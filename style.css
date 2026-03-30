@@ -6,13 +6,13 @@
 }
 
 :root {
-    --text: #2c2c2c;
-    --text-light: #555;
-    --accent: #1a5276;
-    --accent-hover: #1a6fa0;
-    --bg: #ffffff;
-    --bg-alt: #f8f9fa;
-    --border: #e0e0e0;
+    --text: #34302d;
+    --text-light: #6e6862;
+    --accent: #5c524a;
+    --accent-hover: #7a6e64;
+    --bg: #f7f3e9;
+    --bg-alt: #ede8da;
+    --border: #ddd8d2;
     --max-width: 760px;
 }
 
@@ -118,9 +118,9 @@ h3 {
 }
 
 .photo-placeholder {
-    width: 160px;
-    height: 200px;
-    min-width: 160px;
+    width: 200px;
+    height: 250px;
+    min-width: 200px;
     background: var(--bg-alt);
     border: 1px solid var(--border);
     border-radius: 4px;
