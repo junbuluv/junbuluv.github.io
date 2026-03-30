@@ -199,6 +199,34 @@ h3 {
     display: inline-block;
 }
 
+/* ===== Abstracts ===== */
+.abstract-toggle {
+    font-size: 0.85rem;
+    color: var(--accent);
+    cursor: pointer;
+}
+
+.abstract-toggle:hover {
+    color: var(--accent-hover);
+}
+
+.abstract {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.35s ease, padding 0.35s ease;
+    font-size: 0.9rem;
+    line-height: 1.65;
+    color: var(--text-light);
+    padding: 0;
+    margin-top: 0;
+}
+
+.abstract.open {
+    max-height: 600px;
+    padding: 0.6rem 0;
+    margin-top: 0.3rem;
+}
+
 /* ===== Teaching ===== */
 .teaching-list {
     list-style: none;

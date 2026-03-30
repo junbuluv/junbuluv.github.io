@@ -75,15 +75,25 @@
         <h2>Working Papers</h2>
         <ol class="papers-list">
             <li>
-                <strong>Private Information, Private Expertise, and Lender Specialization</strong>
+                <strong>Public Information, Private Expertise, and Lender Specialization</strong>
                 <br>
                 <a href="https://github.com/junbuluv/paper-drafts/blob/main/specialization.pdf" target="_blank">[PDF]</a>
                 <em>— Under Review</em>
+                <br>
+                <a href="javascript:void(0)" class="abstract-toggle">[Show Abstract]</a>
+                <div class="abstract">
+                    Why do lenders specialize in specific industries rather than diversify? Exploiting the SBA's 2014 credit-scoring mandate, which applied to most guaranteed loans but left one program exempt, I show that standardized scores reduced specialization by 12.7 percent as lenders entered new sectors and reallocated portfolios. Yet public information crowds out private expertise: in previously specialized industries, post-reform defaults rise by 11 percent of the pre-policy rate while competitive entry holds spreads flat. A Bartik shift-share IV confirms that remaining specialization causally lowers defaults, deepens repeat borrowing, and reduces spreads for repeat borrowers, reflecting informational complementarities rather than hold-up.
+                </div>
             </li>
             <li>
                 <strong>Rules, Discretion, and Soft Information in Small Business Lending</strong>
                 <br>
                 <a href="https://github.com/junbuluv/paper-drafts/blob/main/discretion.pdf" target="_blank">[PDF]</a>
+                <br>
+                <a href="javascript:void(0)" class="abstract-toggle">[Show Abstract]</a>
+                <div class="abstract">
+                    Rules eliminate discretion, but discretion can embed information. I study this tradeoff using the 2014 SBA reform that replaced lender-discretionary collateral appraisals with standardized haircuts. Exploiting cross-state variation in homestead exemptions, I find that loan spreads fall more where business assets are the lender's primary recovery source: spreads fall 12.8 basis points in unlimited-exemption states, where lenders face higher frictions accessing the borrower's home equity, relative to zero-exemption states, and the effect increases monotonically with the exemption level across all states. Credit growth declines for experienced repeat borrowers but not for first-time borrowers, consistent with the loss of relationship-specific information embedded in discretionary valuations. UCC filing data from three states show that lenders relying mainly on business collateral draft broader and more detailed liens post-reform, adding clauses covering future acquisitions and listing more identifiable assets (serial numbers, account numbers), while lenders with home equity recourse shift five times faster toward generic blanket claims. The results reveal a fundamental tradeoff: standardization corrects the conservative bias in collateral valuations, lowering average pricing, but displaces the private information through which relationship lenders supported known borrowers.
+                </div>
             </li>
         </ol>
     </section>
@@ -117,6 +127,16 @@
 <footer>
     <p>&copy; 2026 Jun Yoo</p>
 </footer>
+
+<script>
+document.querySelectorAll('.abstract-toggle').forEach(function(toggle) {
+    toggle.addEventListener('click', function() {
+        var abstract = this.parentElement.querySelector('.abstract');
+        abstract.classList.toggle('open');
+        this.textContent = abstract.classList.contains('open') ? '[Hide Abstract]' : '[Show Abstract]';
+    });
+});
+</script>
 
 </body>
 </html>
