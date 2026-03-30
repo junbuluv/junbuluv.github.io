@@ -227,6 +227,13 @@ h3 {
     margin-top: 0.3rem;
 }
 
+.presentations {
+    font-size: 0.88rem;
+    color: var(--text-light);
+    margin-top: 0.4rem;
+    font-style: italic;
+}
+
 /* ===== Teaching ===== */
 .teaching-list {
     list-style: none;
