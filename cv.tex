@@ -1,0 +1,248 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%% Simple LaTeX CV Template %%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%% Document Setup %%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\documentclass[10pt]{article}
+
+\usepackage{calc}
+\usepackage{pifont}
+\usepackage{marvosym}
+
+\makeatletter
+\newlength{\bibhang}
+\setlength{\bibhang}{1em}
+\newlength{\bibsep}
+ {\@listi \global\bibsep\itemsep \global\advance\bibsep by\parsep}
+\newenvironment{bibsection}%
+        {\vspace{-\baselineskip}\begin{list}{}{%
+       \setlength{\leftmargin}{\bibhang}%
+       \setlength{\itemindent}{-\leftmargin}%
+       \setlength{\itemsep}{\bibsep}%
+       \setlength{\parsep}{\z@}%
+        \setlength{\partopsep}{0pt}%
+        \setlength{\topsep}{0pt}}}
+        {\end{list}\vspace{-.6\baselineskip}}
+\makeatother
+
+\reversemarginpar
+
+\usepackage{comment}
+\usepackage[paper=a4paper,
+            marginparwidth=24mm,
+            marginparsep=1mm,
+            margin=15mm,
+            includemp]{geometry}
+
+\setlength{\parindent}{0in}
+
+\usepackage{paralist}
+\usepackage[shortlabels]{enumitem}
+
+\usepackage{fancyhdr,lastpage}
+\pagestyle{fancy}
+\fancyhf{}\renewcommand{\headrulewidth}{0pt}
+\fancyfootoffset{\marginparsep+\marginparwidth}
+\newlength{\footpageshift}
+\setlength{\footpageshift}
+          {0.1\textwidth+0.1\marginparsep+0.1\marginparwidth-2in}
+\lfoot{\hspace{\footpageshift}%
+       \parbox{3.5in}{\, \hfill %
+                    \arabic{page} of \protect\pageref*{LastPage} % +LP
+                    \hfill \,}}
+
+\usepackage{hyperref}
+\usepackage[dvipsnames]{xcolor}
+\definecolor{darkblue}{rgb}{0.0,0.0,0.3}
+\hypersetup{colorlinks,breaklinks,
+            linkcolor=Maroon,urlcolor=Maroon,
+            anchorcolor=Maroon,citecolor=Maroon}
+
+%%%%%%%%%%%%%%%%%%%%%%%% End Document Setup %%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%% Helper Commands %%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\newcommand{\makeheading}[1]%
+        {\hspace*{-\marginparsep minus \marginparwidth}%
+         \begin{minipage}[t]{\textwidth+\marginparwidth+\marginparsep}%
+                {\large \bfseries #1}\\[-0.15\baselineskip]%
+                 \rule{\columnwidth}{1pt}%
+         \end{minipage}}
+
+\renewcommand{\section}[2]%
+        {\pagebreak[2]\vspace{1\baselineskip}%
+         \phantomsection\addcontentsline{toc}{section}{#1}%
+         \hspace{0in}%
+         \marginpar{
+         \raggedright \scshape #1}#2}
+
+\newenvironment{outerlist}[1][\enskip\textbullet]%
+        {\begin{itemize}[#1]}{\end{itemize}%
+         \vspace{-0.6\baselineskip}}
+
+\newenvironment{lonelist}[1][\enskip\textbullet]%
+        {\vspace{-\baselineskip}\begin{list}{#1}{%
+        \setlength{\partopsep}{0pt}%
+        \setlength{\topsep}{0pt}}}
+        {\end{list}\vspace{-.6\baselineskip}}
+
+\newenvironment{innerlist}[1][\enskip$\circ$]%
+        {\begin{compactitem}[#1]}{\end{compactitem}}
+
+\newenvironment{loneinnerlist}[1][\enskip\textbullet]%
+        {\vspace{-\baselineskip}\begin{compactitem}[#1]}
+        {\end{compactitem}\vspace{-.6\baselineskip}}
+
+\newcommand{\blankline}{\quad\pagebreak[2]}
+
+\newcommand\doilink[1]{\href{http://dx.doi.org/#1}{#1}}
+\newcommand\doi[1]{doi:\doilink{#1}}
+
+%%%%%%%%%%%%%%%%%%%%%%%% End Helper Commands %%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%% Begin CV Document %%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\def\vs{\vspace{-0.1in}}
+\begin{document}
+\makeheading{Hyun Jun Yoo \hfill {\small \today}}
+
+
+\section{Contact Information}
+
+\newlength{\rcollength}\setlength{\rcollength}{3 in}
+\vs
+\begin{tabular}[t]{@{}p{\textwidth-\rcollength}p{\rcollength}}
+
+Hyun Jun Yoo      & \texttt{Linkedin:}\href{https://www.linkedin.com/in/jun-yoo-91ba14155}{www.linkedin.com/in/jun-yoo-91ba14155}\\
+New York, NY     & {\large\Letter} \texttt{E-mail:}\href{mailto:hyunjun.yoo@baruch.cuny.edu}{hyunjun.yoo@baruch.cuny.edu}
+\end{tabular}
+
+\section{Education}
+    \textbf{The Graduate Center, CUNY}, New York, NY \hfill 2021--Present
+    \begin{outerlist}
+        \item Ph.D. in Economics, expected 2027
+        \item M.Phil. in Economics, 2025
+    \end{outerlist}
+
+    \vspace{0.1in}
+    \textbf{College of Staten Island, CUNY}, Staten Island, NY \hfill 2019--2021
+    \begin{outerlist}
+        \item M.Sc., Business Management - Business Analytics of Large Scale Data track.
+    \end{outerlist}
+
+\section{Research Interests}
+\label{sec:research_backg}
+\vspace{-0.25in}
+\begin{outerlist}
+
+  \item {Banking, Small Business Lending, Private Credit}
+
+\end{outerlist}
+
+\vspace{5mm}
+\section{Working Papers}
+\vspace{-0.25in}
+
+\begin{outerlist}
+    \item \href{https://github.com/junbuluv/lender-specialization/blob/master/Paper/full_draft/main.pdf}{Private Information, Private Expertise, and Lender Specialization} \hfill \textit{Under Review}
+    \item \href{https://github.com/junbuluv/sba_project/blob/main/Paper/main.pdf}{Rules, Discretion, and Soft Information in Small Business Lending} \hfill \textit{Work in Progress}
+\end{outerlist}
+
+
+\section{Presentations}
+\vspace{-0.25in}
+
+\begin{outerlist}
+  \item \textbf{2026}
+    \begin{innerlist}
+      \item 2026 FIRS Conference Ph.D. Student Sessions (Scheduled)
+    \end{innerlist}
+
+  \item \textbf{2025}
+    \begin{innerlist}
+      \item Financial Management Association Annual Meeting
+      \vspace{1mm}
+      \item Baruch Brown Bag Seminar
+      \vspace{1mm}
+      \item LaBS International Banking Workshop (HSE University)
+      \vspace{1mm}
+      \item University of Delaware and Federal Reserve Bank of Philadelphia Fintech \& Financial Institutions Conference (Ph.D. student poster)
+    \end{innerlist}
+\end{outerlist}
+
+
+\section{Research Experience and Other Employment}
+\vspace{-0.25in}
+
+
+\begin{outerlist}
+    \item {\bf Teaching Assistant} \hfill August 2025--May 2026\\
+    Zicklin School of Business, Baruch College, CUNY.
+    \item {\bf Research Assistant} \hfill May 2022--August 2022\\
+    Department of Economics, The Graduate Center, CUNY.
+    \item {\bf Graduate Assistant} \hfill August 2021--May 2022\\
+    Department of Economics, The Graduate Center, CUNY.
+    \item {\bf Research Assistant} \hfill May 2019--May 2020\\
+    Department of Finance, College of Staten Island, CUNY.
+
+\end{outerlist}
+
+\section{Teaching Experience}
+\label{sec:research_exper}
+\vspace{-0.25in}
+\begin{outerlist}
+\item {Corporate Finance} \hfill Spring 2026 \\
+Zicklin School of Business.
+\item {Money and Banking} \hfill Fall 2025\\    Department of Economics, Queens College.
+
+    \item {Introduction to Macroeconomics} \hfill Fall 2022, Spring 2023, Fall 2024, Spring 2025\\
+    Department of Economics, Queens College.
+   \item {Introduction to Microeconomics} \hfill Fall 2024, Spring 2025\\
+    Department of Economics, Queens College.
+
+\end{outerlist}
+
+
+\section{Honors and Awards}
+\vspace{-0.25in}
+\begin{outerlist}
+  \item \textbf{\textit{Dissertation Fellowship}} \hfill 2026--2027
+  \item \textbf{\textit{Graduate Center Fellowship}} \hfill 2021--2026
+  \item \textbf{\textit{Doctoral Student Research Grant}} \hfill 2023, 2025
+  \item \textbf{\textit{China at CUNY Initiative Seminar Fellowship}} \hfill 2024, 2025
+\end{outerlist}
+
+\section{References}
+\vspace{-0.25in}
+
+\noindent
+\begin{minipage}[t]{0.48\textwidth}
+\textbf{Professor Linda Allen}\\
+Zicklin School of Business, Baruch College, CUNY\\
+E-mail: \href{mailto:Linda.Allen@baruch.cuny.edu}{Linda.Allen@baruch.cuny.edu}
+\end{minipage}\hfill
+\begin{minipage}[t]{0.48\textwidth}
+\textbf{Professor Theodore Joyce}\\
+Zicklin School of Business, Baruch College, CUNY\\
+E-mail: \href{mailto:theodore.joyce@baruch.cuny.edu}{theodore.joyce@baruch.cuny.edu}
+\end{minipage}
+
+\vspace{0.12in}
+
+\noindent
+\begin{minipage}[t]{0.48\textwidth}
+\textbf{Professor Fabrice Tourre}\\
+Zicklin School of Business, Baruch College, CUNY\\
+E-mail: \href{mailto:fabrice.tourre@baruch.cuny.edu}{fabrice.tourre@baruch.cuny.edu}
+\end{minipage}
+
+\section{Technical Skills}
+\vspace{-0.25in}
+\begin{outerlist}
+  \item \textit{Programming Languages}: Julia, Python, R
+  \item \textit{Software}: MATLAB, Stata
+\end{outerlist}
+
+\end{document}

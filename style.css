@@ -1,0 +1,271 @@
+/* ===== Reset & Base ===== */
+*, *::before, *::after {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    --text: #2c2c2c;
+    --text-light: #555;
+    --accent: #1a5276;
+    --accent-hover: #1a6fa0;
+    --bg: #ffffff;
+    --bg-alt: #f8f9fa;
+    --border: #e0e0e0;
+    --max-width: 760px;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: "Palatino Linotype", Palatino, "Book Antiqua", Georgia, serif;
+    color: var(--text);
+    background: var(--bg);
+    line-height: 1.7;
+    font-size: 17px;
+}
+
+a {
+    color: var(--accent);
+    text-decoration: none;
+}
+
+a:hover {
+    color: var(--accent-hover);
+    text-decoration: underline;
+}
+
+/* ===== Navigation ===== */
+header {
+    border-bottom: 1px solid var(--border);
+    position: sticky;
+    top: 0;
+    background: var(--bg);
+    z-index: 100;
+}
+
+nav {
+    max-width: var(--max-width);
+    margin: 0 auto;
+    padding: 1rem 1.5rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.nav-name {
+    font-weight: 700;
+    font-size: 1.15rem;
+    color: var(--text);
+}
+
+nav ul {
+    list-style: none;
+    display: flex;
+    gap: 1.5rem;
+}
+
+nav ul li a {
+    font-size: 0.92rem;
+    color: var(--text-light);
+    letter-spacing: 0.02em;
+}
+
+nav ul li a:hover {
+    color: var(--accent);
+    text-decoration: none;
+}
+
+/* ===== Sections ===== */
+main {
+    max-width: var(--max-width);
+    margin: 0 auto;
+    padding: 0 1.5rem;
+}
+
+.section {
+    padding: 3rem 0 2rem;
+    border-bottom: 1px solid var(--border);
+}
+
+.section:last-child {
+    border-bottom: none;
+}
+
+h2 {
+    font-size: 1.3rem;
+    font-weight: 700;
+    margin-bottom: 1.2rem;
+    color: var(--text);
+}
+
+h3 {
+    font-size: 1rem;
+    font-weight: 600;
+    margin-top: 1rem;
+    margin-bottom: 0.5rem;
+    color: var(--text-light);
+}
+
+/* ===== About ===== */
+.about-container {
+    display: flex;
+    gap: 2.5rem;
+    align-items: flex-start;
+}
+
+.photo-placeholder {
+    width: 160px;
+    height: 200px;
+    min-width: 160px;
+    background: var(--bg-alt);
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #aaa;
+    font-size: 0.9rem;
+}
+
+.photo-placeholder img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 4px;
+}
+
+.about-text h1 {
+    font-size: 1.8rem;
+    font-weight: 700;
+    margin-bottom: 0.15rem;
+}
+
+.title {
+    font-size: 1.05rem;
+    color: var(--text-light);
+    margin-bottom: 0.1rem;
+}
+
+.affiliation {
+    font-size: 0.95rem;
+    color: var(--text-light);
+    margin-bottom: 1rem;
+}
+
+.bio {
+    margin-bottom: 0.8rem;
+    font-size: 0.98rem;
+}
+
+.contact {
+    margin-top: 1rem;
+    font-size: 0.95rem;
+}
+
+/* ===== Research ===== */
+.research-list {
+    list-style: none;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.6rem;
+}
+
+.research-list li {
+    background: var(--bg-alt);
+    border: 1px solid var(--border);
+    padding: 0.4rem 1rem;
+    border-radius: 3px;
+    font-size: 0.93rem;
+}
+
+/* ===== Papers ===== */
+.papers-list {
+    padding-left: 1.2rem;
+}
+
+.papers-list li {
+    margin-bottom: 1.2rem;
+    font-size: 0.98rem;
+    line-height: 1.6;
+}
+
+.papers-list li a {
+    font-size: 0.88rem;
+    margin-top: 0.2rem;
+    display: inline-block;
+}
+
+/* ===== Teaching ===== */
+.teaching-list {
+    list-style: none;
+    padding-left: 0;
+}
+
+.teaching-list li {
+    padding: 0.3rem 0;
+    font-size: 0.95rem;
+}
+
+/* ===== CV ===== */
+.cv-link {
+    display: inline-block;
+    padding: 0.5rem 1.2rem;
+    border: 1px solid var(--accent);
+    border-radius: 3px;
+    font-size: 0.93rem;
+    transition: background 0.2s, color 0.2s;
+}
+
+.cv-link:hover {
+    background: var(--accent);
+    color: #fff;
+    text-decoration: none;
+}
+
+/* ===== Footer ===== */
+footer {
+    max-width: var(--max-width);
+    margin: 0 auto;
+    padding: 2rem 1.5rem;
+    text-align: center;
+    font-size: 0.85rem;
+    color: #999;
+}
+
+/* ===== Responsive ===== */
+@media (max-width: 600px) {
+    .about-container {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+    }
+
+    .photo-placeholder {
+        width: 140px;
+        height: 175px;
+        min-width: 140px;
+    }
+
+    nav {
+        flex-direction: column;
+        gap: 0.8rem;
+    }
+
+    nav ul {
+        gap: 1rem;
+    }
+
+    .research-list {
+        justify-content: center;
+    }
+
+    .contact {
+        display: flex;
+        flex-direction: column;
+        gap: 0.3rem;
+    }
+}
