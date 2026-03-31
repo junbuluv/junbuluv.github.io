@@ -10,18 +10,73 @@
     <meta property="og:description" content="Research on information frictions, lender specialization, and small business credit markets.">
     <meta property="og:url" content="https://junbuluv.github.io">
     <meta property="og:type" content="website">
+    <meta property="og:image" content="https://avatars.githubusercontent.com/u/75870877?v=4">
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:title" content="Jun Yoo | Doctoral Candidate in Economics">
+    <meta name="twitter:description" content="Research on information frictions, lender specialization, and small business credit markets.">
+    <meta name="twitter:image" content="https://avatars.githubusercontent.com/u/75870877?v=4">
     <meta name="google-site-verification" content="5DIOtyNSI-wYLoSOkwlc9-mByCEG3X01fKzWhp--Uho">
     <meta name="robots" content="index, follow">
     <link rel="canonical" href="https://junbuluv.github.io">
     <title>Jun Yoo | Doctoral Candidate in Economics</title>
     <link rel="stylesheet" href="style.css?v=2">
     <style>
-        .abstract-toggle { font-size: 0.85rem; color: #5c524a; cursor: pointer; }
-        .abstract-toggle:hover { color: #7a6e64; }
-        .abstract { max-height: 0; overflow: hidden; transition: max-height 0.35s ease, padding 0.35s ease; font-size: 0.9rem; line-height: 1.65; color: #6e6862; padding: 0; margin-top: 0; }
-        .abstract.open { max-height: 600px; padding: 0.6rem 0; margin-top: 0.3rem; }
+        .abstract-wrapper { margin-top: 0.3rem; }
+        .abstract-wrapper summary { font-size: 0.85rem; color: #5c524a; cursor: pointer; list-style: none; }
+        .abstract-wrapper summary::-webkit-details-marker { display: none; }
+        .abstract-wrapper summary::marker { display: none; content: ""; }
+        .abstract-wrapper summary:hover { color: #7a6e64; }
+        .abstract-wrapper .abstract { font-size: 0.9rem; line-height: 1.65; color: #6e6862; padding: 0.6rem 0; margin-top: 0.3rem; }
         .presentations { font-size: 0.88rem; color: #6e6862; margin-top: 0.4rem; font-style: italic; }
     </style>
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@graph": [
+        {
+          "@type": "Person",
+          "@id": "https://junbuluv.github.io/#person",
+          "name": "Jun Yoo",
+          "givenName": "Jun",
+          "familyName": "Yoo",
+          "jobTitle": "Doctoral Candidate in Economics",
+          "affiliation": [
+            {
+              "@type": "EducationalOrganization",
+              "name": "The Graduate Center, CUNY"
+            },
+            {
+              "@type": "EducationalOrganization",
+              "name": "Baruch College, Zicklin School of Business, CUNY"
+            }
+          ],
+          "url": "https://junbuluv.github.io",
+          "image": "https://avatars.githubusercontent.com/u/75870877?v=4",
+          "email": ["hyunjun.yoo@baruch.cuny.edu", "hyoo1@gc.cuny.edu"],
+          "sameAs": [
+            "https://github.com/junbuluv"
+          ],
+          "knowsAbout": ["Banking", "Small Business Lending", "Private Credit", "Information Frictions", "Lender Specialization", "Soft Information"]
+        },
+        {
+          "@type": "ScholarlyArticle",
+          "name": "Public Information, Private Expertise, and Lender Specialization",
+          "author": { "@id": "https://junbuluv.github.io/#person" },
+          "abstract": "Why do lenders specialize in specific industries rather than diversify? Exploiting the SBA\u2019s 2014 credit-scoring mandate, which applied to most guaranteed loans but left one program exempt, I show that standardized scores reduced specialization by 12.7 percent as lenders entered new sectors and reallocated portfolios.",
+          "url": "https://github.com/junbuluv/paper-drafts/blob/main/specialization.pdf",
+          "keywords": ["lender specialization", "credit scoring", "small business lending", "SBA", "information frictions"]
+        },
+        {
+          "@type": "ScholarlyArticle",
+          "name": "Rules, Discretion, and Soft Information in Small Business Lending",
+          "author": { "@id": "https://junbuluv.github.io/#person" },
+          "abstract": "Rules eliminate discretion, but discretion can embed information. I study this tradeoff using the 2014 SBA reform that replaced lender-discretionary collateral appraisals with standardized haircuts.",
+          "url": "https://github.com/junbuluv/paper-drafts/blob/main/discretion.pdf",
+          "keywords": ["soft information", "discretion", "collateral", "small business lending", "SBA reform"]
+        }
+      ]
+    }
+    </script>
 </head>
 <body>
 
@@ -84,10 +139,12 @@
                 <a href="https://github.com/junbuluv/paper-drafts/blob/main/specialization.pdf" target="_blank">[PDF]</a>
                 <em>— Under Review</em>
                 <br>
-                <a href="javascript:void(0)" class="abstract-toggle">[Show Abstract]</a>
-                <div class="abstract">
-                    Why do lenders specialize in specific industries rather than diversify? Exploiting the SBA's 2014 credit-scoring mandate, which applied to most guaranteed loans but left one program exempt, I show that standardized scores reduced specialization by 12.7 percent as lenders entered new sectors and reallocated portfolios. Yet public information crowds out private expertise: in previously specialized industries, post-reform defaults rise by 11 percent of the pre-policy rate while competitive entry holds spreads flat. A Bartik shift-share IV confirms that remaining specialization causally lowers defaults, deepens repeat borrowing, and reduces spreads for repeat borrowers, reflecting informational complementarities rather than hold-up.
-                </div>
+                <details class="abstract-wrapper">
+                    <summary>[Show Abstract]</summary>
+                    <div class="abstract">
+                        Why do lenders specialize in specific industries rather than diversify? Exploiting the SBA's 2014 credit-scoring mandate, which applied to most guaranteed loans but left one program exempt, I show that standardized scores reduced specialization by 12.7 percent as lenders entered new sectors and reallocated portfolios. Yet public information crowds out private expertise: in previously specialized industries, post-reform defaults rise by 11 percent of the pre-policy rate while competitive entry holds spreads flat. A Bartik shift-share IV confirms that remaining specialization causally lowers defaults, deepens repeat borrowing, and reduces spreads for repeat borrowers, reflecting informational complementarities rather than hold-up.
+                    </div>
+                </details>
                 <p class="presentations">Presented at: FIRS 2026; FMA Annual Meeting 2025; LaBS International Banking Workshop 2025; Brown Bag: Baruch College &amp; The Graduate Center, CUNY, 2025</p>
             </li>
             <li>
@@ -95,10 +152,12 @@
                 <br>
                 <a href="https://github.com/junbuluv/paper-drafts/blob/main/discretion.pdf" target="_blank">[PDF]</a>
                 <br>
-                <a href="javascript:void(0)" class="abstract-toggle">[Show Abstract]</a>
-                <div class="abstract">
-                    Rules eliminate discretion, but discretion can embed information. I study this tradeoff using the 2014 SBA reform that replaced lender-discretionary collateral appraisals with standardized haircuts. Exploiting cross-state variation in homestead exemptions, I find that loan spreads fall more where business assets are the lender's primary recovery source: spreads fall 12.8 basis points in unlimited-exemption states, where lenders face higher frictions accessing the borrower's home equity, relative to zero-exemption states, and the effect increases monotonically with the exemption level across all states. Credit growth declines for experienced repeat borrowers but not for first-time borrowers, consistent with the loss of relationship-specific information embedded in discretionary valuations. UCC filing data from three states show that lenders relying mainly on business collateral draft broader and more detailed liens post-reform, adding clauses covering future acquisitions and listing more identifiable assets (serial numbers, account numbers), while lenders with home equity recourse shift five times faster toward generic blanket claims. The results reveal a fundamental tradeoff: standardization corrects the conservative bias in collateral valuations, lowering average pricing, but displaces the private information through which relationship lenders supported known borrowers.
-                </div>
+                <details class="abstract-wrapper">
+                    <summary>[Show Abstract]</summary>
+                    <div class="abstract">
+                        Rules eliminate discretion, but discretion can embed information. I study this tradeoff using the 2014 SBA reform that replaced lender-discretionary collateral appraisals with standardized haircuts. Exploiting cross-state variation in homestead exemptions, I find that loan spreads fall more where business assets are the lender's primary recovery source: spreads fall 12.8 basis points in unlimited-exemption states, where lenders face higher frictions accessing the borrower's home equity, relative to zero-exemption states, and the effect increases monotonically with the exemption level across all states. Credit growth declines for experienced repeat borrowers but not for first-time borrowers, consistent with the loss of relationship-specific information embedded in discretionary valuations. UCC filing data from three states show that lenders relying mainly on business collateral draft broader and more detailed liens post-reform, adding clauses covering future acquisitions and listing more identifiable assets (serial numbers, account numbers), while lenders with home equity recourse shift five times faster toward generic blanket claims. The results reveal a fundamental tradeoff: standardization corrects the conservative bias in collateral valuations, lowering average pricing, but displaces the private information through which relationship lenders supported known borrowers.
+                    </div>
+                </details>
             </li>
         </ol>
     </section>
@@ -134,11 +193,9 @@
 </footer>
 
 <script>
-document.querySelectorAll('.abstract-toggle').forEach(function(toggle) {
-    toggle.addEventListener('click', function() {
-        var abstract = this.parentElement.querySelector('.abstract');
-        abstract.classList.toggle('open');
-        this.textContent = abstract.classList.contains('open') ? '[Hide Abstract]' : '[Show Abstract]';
+document.querySelectorAll('.abstract-wrapper').forEach(function(details) {
+    details.addEventListener('toggle', function() {
+        this.querySelector('summary').textContent = this.open ? '[Hide Abstract]' : '[Show Abstract]';
     });
 });
 </script>
