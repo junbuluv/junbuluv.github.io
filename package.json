@@ -1,0 +1,35 @@
+{
+  "name": "junbuluv-github-io",
+  "version": "0.1.0",
+  "type": "module",
+  "private": true,
+  "description": "Academic personal webpage for Jun Yoo. Astro 5 + Tailwind, static build.",
+  "engines": {
+    "node": ">=22"
+  },
+  "scripts": {
+    "dev": "astro dev",
+    "start": "astro dev",
+    "build:cv": "pdflatex -interaction=nonstopmode cv.tex && pdflatex -interaction=nonstopmode cv.tex && cp cv.pdf public/cv.pdf",
+    "build": "cp cv.pdf public/cv.pdf 2>/dev/null || true && astro build",
+    "preview": "astro preview",
+    "astro": "astro",
+    "typecheck": "astro check",
+    "deploy": "npm run build && npx gh-pages -d dist -b gh-pages -m 'Deploy site'",
+    "format": "prettier --write \"src/**/*.{ts,astro,json,css,md}\""
+  },
+  "dependencies": {
+    "@astrojs/check": "^0.9.4",
+    "@astrojs/tailwind": "^5.1.4",
+    "astro": "^5.1.1",
+    "tailwindcss": "^3.4.17",
+    "typescript": "^5.7.2",
+    "zod": "^3.24.1"
+  },
+  "devDependencies": {
+    "gh-pages": "^6.2.0",
+    "prettier": "^3.4.2",
+    "prettier-plugin-astro": "^0.14.1",
+    "prettier-plugin-tailwindcss": "^0.6.9"
+  }
+}

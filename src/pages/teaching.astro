@@ -1,0 +1,60 @@
+---
+import { getCollection } from 'astro:content';
+import BaseLayout from '@layouts/BaseLayout.astro';
+
+const courses = (await getCollection('teaching')).sort(
+  (a, b) => a.data.order - b.data.order,
+);
+
+const institutions: ('Baruch College, CUNY' | 'Queens College, CUNY')[] = [
+  'Baruch College, CUNY',
+  'Queens College, CUNY',
+];
+
+const description = 'Teaching experience of Jun Yoo at Baruch College and Queens College, CUNY.';
+const keywords =
+  'Jun Yoo teaching, Queens College CUNY, Baruch College CUNY, macroeconomics, microeconomics, money and banking, corporate finance';
+---
+
+<BaseLayout
+  title="Teaching | Jun Yoo"
+  description={description}
+  keywords={keywords}
+  canonical="https://junbuluv.github.io/teaching.html"
+  active="teaching"
+>
+  <section class="border-b border-rule py-12 last:border-b-0">
+    <h2 class="mb-5 text-[1.3rem] font-bold text-ink">Teaching</h2>
+    {
+      institutions.map((institution) => {
+        const items = courses.filter((c) => c.data.institution === institution);
+        if (items.length === 0) return null;
+        return (
+          <>
+            <h3 class="mb-2 mt-4 text-[1rem] font-semibold text-ink-soft">{institution}</h3>
+            <ul class="list-none pl-0">
+              {items.map((course) => {
+                const roleSuffix =
+                  course.data.role === 'Teaching Assistant' ? ' (Teaching Assistant)' : '';
+                return (
+                  <li class="py-1 text-[0.95rem]">
+                    {course.data.code} &mdash; {course.data.title}
+                    {roleSuffix}
+                    {course.data.websiteUrl && (
+                      <>
+                        {' '}
+                        <a href={course.data.websiteUrl} target="_blank" rel="noopener">
+                          [course website]
+                        </a>
+                      </>
+                    )}
+                  </li>
+                );
+              })}
+            </ul>
+          </>
+        );
+      })
+    }
+  </section>
+</BaseLayout>

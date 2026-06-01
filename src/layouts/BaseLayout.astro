@@ -1,0 +1,94 @@
+---
+import '@styles/global.css';
+
+interface Props {
+  title: string;
+  description: string;
+  keywords?: string;
+  canonical: string;
+  active: 'main' | 'research' | 'teaching' | 'contact';
+  ogImage?: string;
+}
+
+const {
+  title,
+  description,
+  keywords,
+  canonical,
+  active,
+  ogImage = 'https://avatars.githubusercontent.com/u/75870877?v=4',
+} = Astro.props;
+
+const nav = [
+  { key: 'main', label: 'Main', href: 'index.html' },
+  { key: 'research', label: 'Research', href: 'research.html' },
+  { key: 'teaching', label: 'Teaching', href: 'teaching.html' },
+  { key: 'contact', label: 'Contact', href: 'contact.html' },
+] as const;
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content={description} />
+    {keywords && <meta name="keywords" content={keywords} />}
+    <meta name="author" content="Jun Yoo" />
+    <meta name="robots" content="index, follow" />
+    <link rel="canonical" href={canonical} />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={canonical} />
+    <meta property="og:type" content="website" />
+    <meta property="og:image" content={ogImage} />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={ogImage} />
+    <meta
+      name="google-site-verification"
+      content="5DIOtyNSI-wYLoSOkwlc9-mByCEG3X01fKzWhp--Uho"
+    />
+    <title>{title}</title>
+    <slot name="head" />
+  </head>
+  <body>
+    <header class="sticky top-0 z-50 border-b border-rule bg-cream">
+      <nav
+        class="mx-auto flex max-w-content items-center justify-between px-6 py-4"
+      >
+        <div class="text-[1.15rem] font-bold text-ink">
+          <a href="index.html" class="text-inherit no-underline hover:no-underline">Jun Yoo</a>
+        </div>
+        <ul class="flex list-none gap-6">
+          {
+            nav.map((item) => (
+              <li>
+                <a
+                  href={item.href}
+                  class:list={[
+                    'text-[0.92rem] tracking-[0.02em] hover:no-underline',
+                    item.key === active
+                      ? 'font-semibold text-ink-accent'
+                      : 'text-ink-soft hover:text-ink-accent',
+                  ]}
+                >
+                  {item.label}
+                </a>
+              </li>
+            ))
+          }
+        </ul>
+      </nav>
+    </header>
+
+    <main class="mx-auto max-w-content px-6">
+      <slot />
+    </main>
+
+    <footer class="mx-auto max-w-content px-6 py-8 text-center text-[0.85rem] text-[#999]">
+      <p>&copy; 2026 Jun Yoo</p>
+    </footer>
+  </body>
+</html>

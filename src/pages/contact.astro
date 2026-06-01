@@ -1,0 +1,35 @@
+---
+import BaseLayout from '@layouts/BaseLayout.astro';
+
+const description = 'Contact information for Jun Yoo, Doctoral Candidate in Economics at CUNY.';
+const keywords =
+  'Jun Yoo contact, Jun Yoo email, Jun Yoo Baruch College, Jun Yoo CUNY, economics PhD candidate';
+---
+
+<BaseLayout
+  title="Contact | Jun Yoo"
+  description={description}
+  keywords={keywords}
+  canonical="https://junbuluv.github.io/contact.html"
+  active="contact"
+>
+  <section class="border-b border-rule py-12 last:border-b-0">
+    <h2 class="mb-5 text-[1.3rem] font-bold text-ink">Contact</h2>
+    <div class="space-y-3 text-[0.98rem]">
+      <p class="font-semibold text-ink">Email</p>
+      <p>
+        <a href="mailto:hyunjun.yoo@baruch.cuny.edu">hyunjun.yoo@baruch.cuny.edu</a><br />
+        <a href="mailto:hyoo1@gc.cuny.edu">hyoo1@gc.cuny.edu</a>
+      </p>
+      <p class="font-semibold text-ink">GitHub</p>
+      <p>
+        <a href="https://github.com/junbuluv" target="_blank" rel="noopener">github.com/junbuluv</a>
+      </p>
+      <p class="font-semibold text-ink">Affiliation</p>
+      <p>
+        The Graduate Center, CUNY<br />
+        Baruch College, Zicklin School of Business, CUNY
+      </p>
+    </div>
+  </section>
+</BaseLayout>

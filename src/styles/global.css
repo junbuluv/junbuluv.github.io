@@ -1,0 +1,21 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    @apply bg-cream font-serif text-[17px] leading-[1.7] text-ink;
+  }
+
+  a {
+    @apply text-ink-accent no-underline;
+  }
+
+  a:hover {
+    @apply text-ink-hover underline;
+  }
+}

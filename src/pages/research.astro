@@ -1,0 +1,106 @@
+---
+import { getCollection } from 'astro:content';
+import BaseLayout from '@layouts/BaseLayout.astro';
+
+const papers = (await getCollection('papers')).sort(
+  (a, b) => a.data.order - b.data.order,
+);
+
+const description =
+  'Research by Jun Yoo on information frictions, lender specialization, and small business lending.';
+const keywords =
+  'Jun Yoo research, lender specialization, credit scoring, SBA, small business lending, information frictions, soft information, discretion, collateral, banking research';
+
+const ldGraph = papers.map((p) => ({
+  '@type': 'ScholarlyArticle',
+  name: p.data.title,
+  author: { '@id': 'https://junbuluv.github.io/#person' },
+  abstract: p.data.abstract.slice(0, 320),
+  ...(p.data.url ? { url: p.data.url } : {}),
+}));
+---
+
+<BaseLayout
+  title="Research | Jun Yoo"
+  description={description}
+  keywords={keywords}
+  canonical="https://junbuluv.github.io/research.html"
+  active="research"
+>
+  <script
+    is:inline
+    type="application/ld+json"
+    slot="head"
+    set:html={JSON.stringify({ '@context': 'https://schema.org', '@graph': ldGraph })}
+  />
+
+  <section class="border-b border-rule py-12 last:border-b-0">
+    <h2 class="mb-5 text-[1.3rem] font-bold text-ink">Working Papers</h2>
+    <ol class="list-decimal space-y-6 pl-5">
+      {
+        papers.map((paper) => (
+          <li class="text-[0.98rem] leading-relaxed">
+            <strong>{paper.data.title}</strong>
+            {paper.data.url && (
+              <>
+                <br />
+                <a
+                  href={paper.data.url}
+                  target="_blank"
+                  rel="noopener"
+                  class="mt-1 inline-block text-[0.88rem]"
+                >
+                  [{paper.data.urlLabel}]
+                </a>
+              </>
+            )}
+            {paper.data.status && (
+              <em class="ml-2 text-ink-soft">&mdash; {paper.data.status}</em>
+            )}
+            {paper.data.coauthors && (
+              <>
+                <br />
+                <span class="text-[0.95rem]">{paper.data.coauthors.join(', ')}</span>
+              </>
+            )}
+            <details class="abstract-wrapper mt-1">
+              <summary class="cursor-pointer text-[0.85rem] text-ink-soft hover:text-ink-hover">
+                [Show Abstract]
+              </summary>
+              <div class="py-2 text-[0.9rem] leading-relaxed text-ink-soft">
+                {paper.data.abstract}
+              </div>
+            </details>
+            {paper.data.presentations && paper.data.presentations.length > 0 && (
+              <p class="mt-2 text-[0.88rem] italic text-ink-soft">
+                Presented at: {paper.data.presentations.join('; ')}
+              </p>
+            )}
+          </li>
+        ))
+      }
+    </ol>
+  </section>
+
+  <style is:global>
+    .abstract-wrapper summary {
+      list-style: none;
+    }
+    .abstract-wrapper summary::-webkit-details-marker {
+      display: none;
+    }
+    .abstract-wrapper summary::marker {
+      display: none;
+      content: '';
+    }
+  </style>
+
+  <script is:inline>
+    document.querySelectorAll('.abstract-wrapper').forEach((details) => {
+      details.addEventListener('toggle', function () {
+        const s = this.querySelector('summary');
+        if (s) s.textContent = this.open ? '[Hide Abstract]' : '[Show Abstract]';
+      });
+    });
+  </script>
+</BaseLayout>

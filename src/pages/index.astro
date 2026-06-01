@@ -1,0 +1,136 @@
+---
+import { getCollection } from 'astro:content';
+import BaseLayout from '@layouts/BaseLayout.astro';
+
+const presentations = await getCollection('presentations');
+const awards = await getCollection('awards');
+
+type FeedItem = {
+  type: 'Presentation' | 'Award';
+  text: string;
+  sortKey: number; // higher = more recent
+};
+
+const presentationItems: FeedItem[] = presentations.map((p) => ({
+  type: 'Presentation',
+  text: p.data.note
+    ? `${p.data.venue} (${p.data.note}), ${p.data.year}`
+    : `${p.data.venue}, ${p.data.year}`,
+  sortKey: p.data.year,
+}));
+
+// Award `year` is a string ("2026", "2026–2027", "2023, 2025"); take the max numeric token for sorting.
+function maxYearIn(year: string): number {
+  const matches = year.match(/\d{4}/g);
+  if (!matches) return 0;
+  return Math.max(...matches.map((y) => parseInt(y, 10)));
+}
+
+const awardItems: FeedItem[] = awards.map((a) => ({
+  type: 'Award',
+  text: `${a.data.name} (${a.data.year})`,
+  sortKey: maxYearIn(a.data.year),
+}));
+
+// Most recent first, limit to top 6.
+const feed = [...presentationItems, ...awardItems]
+  .sort((a, b) => b.sortKey - a.sortKey)
+  .slice(0, 6);
+
+const description =
+  'Jun Yoo is a Doctoral Candidate in Economics at The Graduate Center, CUNY. Research on information frictions, lender specialization, and small business lending.';
+const keywords =
+  'Jun Yoo, Hyun Jun Yoo, Jun Yoo CUNY, Jun Yoo economist, economics, finance, CUNY, Baruch College, Graduate Center CUNY, small business lending, lender specialization, banking, information frictions, soft information, private credit, doctoral candidate';
+---
+
+<BaseLayout
+  title="Jun Yoo | Doctoral Candidate in Economics"
+  description={description}
+  keywords={keywords}
+  canonical="https://junbuluv.github.io/"
+  active="main"
+>
+  <script is:inline type="application/ld+json" slot="head" set:html={JSON.stringify({
+    '@context': 'https://schema.org',
+    '@graph': [
+      {
+        '@type': 'Person',
+        '@id': 'https://junbuluv.github.io/#person',
+        name: 'Jun Yoo',
+        givenName: 'Jun',
+        familyName: 'Yoo',
+        jobTitle: 'Doctoral Candidate in Economics',
+        affiliation: [
+          { '@type': 'EducationalOrganization', name: 'The Graduate Center, CUNY' },
+          { '@type': 'EducationalOrganization', name: 'Baruch College, Zicklin School of Business, CUNY' },
+        ],
+        url: 'https://junbuluv.github.io',
+        image: 'https://avatars.githubusercontent.com/u/75870877?v=4',
+        email: ['hyunjun.yoo@baruch.cuny.edu', 'hyoo1@gc.cuny.edu'],
+        sameAs: ['https://github.com/junbuluv'],
+        knowsAbout: [
+          'Banking',
+          'Small Business Lending',
+          'Private Credit',
+          'Information Frictions',
+          'Lender Specialization',
+          'Soft Information',
+        ],
+      },
+    ],
+  })} />
+
+  <section class="border-b border-rule py-12">
+    <div class="flex flex-col items-start gap-10 sm:flex-row">
+      <div
+        class="h-[350px] w-[280px] min-w-[280px] overflow-hidden rounded border border-rule bg-cream-alt max-sm:h-[175px] max-sm:w-[140px] max-sm:min-w-[140px]"
+      >
+        <img
+          src="https://avatars.githubusercontent.com/u/75870877?v=4"
+          alt="Jun Yoo"
+          class="h-full w-full object-cover"
+        />
+      </div>
+      <div>
+        <h1 class="mb-1 text-[1.8rem] font-bold">Jun Yoo</h1>
+        <p class="mb-1 text-[1.05rem] text-ink-soft">Doctoral Candidate in Economics</p>
+        <p class="mb-4 text-[0.95rem] text-ink-soft">
+          The Graduate Center, CUNY &amp; Baruch College, Zicklin School of Business
+        </p>
+        <p class="mb-3 text-[0.98rem]">
+          Hi! My name is Jun Yoo, and I am a Doctoral candidate at The Graduate Center, CUNY and
+          Baruch College. I study how information frictions and regulatory design shape small
+          business credit markets. My work examines lender specialization, discretion, and the role
+          of soft information.
+        </p>
+        <p class="mb-4 text-[0.95rem] text-ink-soft">
+          <strong class="text-ink">Fields:</strong> Banking, Small Business Lending, Private Credit
+        </p>
+        <p class="mt-5">
+          <a
+            href="cv.pdf"
+            class="inline-block rounded border border-ink-accent px-5 py-2 text-[0.93rem] transition-colors hover:bg-ink-accent hover:text-white hover:no-underline"
+          >
+            Download CV (PDF)
+          </a>
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <section class="py-10">
+    <h2 class="mb-5 text-[1.3rem] font-bold text-ink">What's new</h2>
+    <ul class="space-y-3">
+      {
+        feed.map((item) => (
+          <li class="text-[0.95rem] leading-snug">
+            <span class="mr-2 inline-block rounded border border-rule bg-cream-alt px-2 py-[2px] text-[0.75rem] uppercase tracking-wide text-ink-soft">
+              {item.type}
+            </span>
+            <span>{item.text}</span>
+          </li>
+        ))
+      }
+    </ul>
+  </section>
+</BaseLayout>
