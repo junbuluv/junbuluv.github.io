@@ -6,8 +6,9 @@ cv.fls
 cv.fdb_latexmk
 cv.synctex.gz
 
-# Local preview screenshots
+# Local preview / debug screenshots
 preview*.png
+live-*.png
 
 # Astro / Node
 node_modules/
