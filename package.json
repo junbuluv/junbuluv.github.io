@@ -15,7 +15,7 @@
     "preview": "astro preview",
     "astro": "astro",
     "typecheck": "astro check",
-    "deploy": "npm run build && npx gh-pages -d dist -b gh-pages -m 'Deploy site'",
+    "deploy": "npm run build && npx gh-pages -d dist -b gh-pages --dotfiles -m 'Deploy site'",
     "format": "prettier --write \"src/**/*.{ts,astro,json,css,md}\""
   },
   "dependencies": {

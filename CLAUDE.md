@@ -43,13 +43,18 @@ Path aliases (`tsconfig.json`): `@components/*`, `@layouts/*`, `@content/*`,
 - **Build**: `npm run build` → static output in `dist/`.
 - **CV**: `npm run build:cv` (pdflatex × 2 + copy to `public/`).
 - **Deploy**: `npm run deploy` runs the Astro build then `npx gh-pages -d dist
-  -b gh-pages` to publish the built output to the `gh-pages` branch.
-  GitHub Pages serves from `gh-pages`. The `main` branch holds source only.
+  -b gh-pages --dotfiles` to publish the built output to the `gh-pages`
+  branch. GitHub Pages serves from `gh-pages`. The `main` branch holds
+  source only.
 
   Important: after this migration, the `gh-pages` branch contains the
   **built `dist/` contents**, not source. Don't push `main` to `gh-pages`
   directly — use `npm run deploy`. See `AGENTS.md` for the
   verify-before-deploy checklist.
+
+  `--dotfiles` is required because `public/.nojekyll` must ship; without it
+  GitHub Pages runs Jekyll, which silently strips Astro's `_astro/` CSS
+  bundle (Jekyll excludes any `_underscore` directory).
 
 ## Conventions
 
