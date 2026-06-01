@@ -19,12 +19,18 @@ function maxYearIn(year: string): number {
   return Math.max(...matches.map((y) => parseInt(y, 10)));
 }
 
+// Brown bags are internal/departmental and don't belong in a public "What's
+// new" feed; they still appear on the research page under each paper.
+const isBrownBag = (venue: string) => /brown\s*bag/i.test(venue);
+
 const feed: FeedItem[] = [
-  ...presentations.map<FeedItem>((p) => ({
-    type: 'Presentation',
-    text: p.data.note ? `${p.data.venue} (${p.data.note})` : p.data.venue,
-    year: p.data.year,
-  })),
+  ...presentations
+    .filter((p) => !isBrownBag(p.data.venue))
+    .map<FeedItem>((p) => ({
+      type: 'Presentation',
+      text: p.data.note ? `${p.data.venue} (${p.data.note})` : p.data.venue,
+      year: p.data.year,
+    })),
   ...awards.map<FeedItem>((a) => ({
     type: 'Award',
     text: a.data.name,
