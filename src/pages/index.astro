@@ -31,11 +31,13 @@ const feed: FeedItem[] = [
       text: p.data.note ? `${p.data.venue} (${p.data.note})` : p.data.venue,
       year: p.data.year,
     })),
-  ...awards.map<FeedItem>((a) => ({
-    type: 'Award',
-    text: a.data.name,
-    year: maxYearIn(a.data.year),
-  })),
+  ...awards
+    .filter((a) => !a.data.excludeFromFeed)
+    .map<FeedItem>((a) => ({
+      type: 'Award',
+      text: a.data.name,
+      year: maxYearIn(a.data.year),
+    })),
 ]
   .sort((a, b) => b.year - a.year)
   .slice(0, 8);

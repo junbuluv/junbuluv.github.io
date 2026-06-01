@@ -1,4 +1,5 @@
 {
   "name": "Graduate Center Fellowship",
-  "year": "2021–2026"
+  "year": "2021–2026",
+  "excludeFromFeed": true
 }
