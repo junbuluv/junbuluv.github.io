@@ -102,7 +102,7 @@ const keywords =
     ],
   })} />
 
-  <section class="border-b border-rule py-12">
+  <section class="reveal border-b border-rule py-12">
     <div class="flex flex-col items-start gap-10 sm:flex-row">
       <div
         class="h-[300px] w-[240px] min-w-[240px] overflow-hidden rounded border border-rule bg-cream-alt sm:h-[350px] sm:w-[280px] sm:min-w-[280px]"
@@ -143,12 +143,12 @@ const keywords =
     </div>
   </section>
 
-  <section class="py-10">
+  <section class="reveal py-10">
     <h2 class="mb-5 text-[1.3rem] font-bold text-ink">What's new</h2>
     <div class="space-y-6">
       {
         [...byYear.entries()].map(([year, items]) => (
-          <div>
+          <div class="reveal">
             <h3 class="mb-2 text-[0.95rem] font-semibold tracking-wide text-ink-soft">{year}</h3>
             <ul class="space-y-2">
               {items.map((item) => (

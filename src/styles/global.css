@@ -11,11 +11,79 @@
     @apply bg-cream font-serif text-[17px] leading-[1.7] text-ink;
   }
 
+  /* Subtle hover transition on every text link. Burgundy → soft-burgundy with a
+     fading underline. Tailwind handles the colors; this just adds the timing. */
   a {
     @apply text-ink-accent no-underline;
+    transition:
+      color 200ms ease,
+      text-decoration-color 200ms ease,
+      background-color 200ms ease;
   }
 
   a:hover {
     @apply text-ink-hover underline;
+  }
+}
+
+@layer components {
+  /* Scroll-reveal: starts faded + nudged down; .is-visible removes both. */
+  .reveal {
+    opacity: 0;
+    transform: translateY(8px);
+    transition:
+      opacity 350ms ease,
+      transform 350ms ease;
+  }
+
+  .reveal.is-visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  /* Animated abstract toggle (replaces <details>/<summary> default snap).
+     Uses the grid-template-rows 0fr → 1fr trick so close animates too. */
+  .abstract-wrapper .abstract-content {
+    display: grid;
+    grid-template-rows: 0fr;
+    opacity: 0;
+    transition:
+      grid-template-rows 250ms ease,
+      opacity 200ms ease;
+  }
+
+  .abstract-wrapper.is-open .abstract-content {
+    grid-template-rows: 1fr;
+    opacity: 1;
+  }
+
+  .abstract-wrapper .abstract-content > * {
+    overflow: hidden;
+  }
+
+  .abstract-toggle {
+    @apply cursor-pointer bg-transparent p-0 text-[0.85rem] text-ink-soft;
+    transition: color 200ms ease;
+  }
+
+  .abstract-toggle:hover {
+    @apply text-ink-hover;
+  }
+}
+
+/* Honor the user's motion preference globally. */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+  }
+
+  .reveal {
+    opacity: 1;
+    transform: none;
   }
 }

@@ -1,5 +1,6 @@
 ---
 import '@styles/global.css';
+import { ClientRouter } from 'astro:transitions';
 import { profiles } from '@/data/profiles';
 
 interface Props {
@@ -55,6 +56,7 @@ const nav = [
       content="5DIOtyNSI-wYLoSOkwlc9-mByCEG3X01fKzWhp--Uho"
     />
     <title>{title}</title>
+    <ClientRouter />
     <slot name="head" />
   </head>
   <body>
@@ -94,5 +96,31 @@ const nav = [
     <footer class="mx-auto max-w-content px-6 py-8 text-center text-[0.85rem] text-[#999]">
       <p>&copy; 2026 Jun Yoo</p>
     </footer>
+
+    <!-- Scroll-reveal: anything marked `.reveal` fades + slides up on first
+         viewport entry. Re-runs after Astro view transitions because
+         `astro:page-load` fires for every navigation. -->
+    <script>
+      function armReveal() {
+        const els = document.querySelectorAll<HTMLElement>('.reveal:not(.is-visible)');
+        if (!('IntersectionObserver' in window) || els.length === 0) {
+          els.forEach((el) => el.classList.add('is-visible'));
+          return;
+        }
+        const io = new IntersectionObserver(
+          (entries) => {
+            for (const e of entries) {
+              if (e.isIntersecting) {
+                e.target.classList.add('is-visible');
+                io.unobserve(e.target);
+              }
+            }
+          },
+          { rootMargin: '0px 0px -40px 0px', threshold: 0.05 },
+        );
+        els.forEach((el) => io.observe(el));
+      }
+      document.addEventListener('astro:page-load', armReveal);
+    </script>
   </body>
 </html>
