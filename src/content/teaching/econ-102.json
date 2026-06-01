@@ -3,5 +3,6 @@
   "title": "Introduction to Microeconomics",
   "institution": "Queens College, CUNY",
   "role": "Instructor of Record",
-  "order": 11
+  "order": 11,
+  "semesters": ["Fall 2024", "Spring 2025"]
 }

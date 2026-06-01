@@ -38,15 +38,22 @@ const keywords =
                   course.data.role === 'Teaching Assistant' ? ' (Teaching Assistant)' : '';
                 return (
                   <li class="py-1 text-[0.95rem]">
-                    {course.data.code} &mdash; {course.data.title}
-                    {roleSuffix}
-                    {course.data.websiteUrl && (
-                      <>
-                        {' '}
-                        <a href={course.data.websiteUrl} target="_blank" rel="noopener">
-                          [course website]
-                        </a>
-                      </>
+                    <div>
+                      {course.data.code} &mdash; {course.data.title}
+                      {roleSuffix}
+                      {course.data.websiteUrl && (
+                        <>
+                          {' '}
+                          <a href={course.data.websiteUrl} target="_blank" rel="noopener">
+                            [course website]
+                          </a>
+                        </>
+                      )}
+                    </div>
+                    {course.data.semesters && course.data.semesters.length > 0 && (
+                      <div class="text-[0.85rem] text-ink-soft">
+                        {course.data.semesters.join(', ')}
+                      </div>
                     )}
                   </li>
                 );

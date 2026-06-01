@@ -1,5 +1,6 @@
 ---
 import '@styles/global.css';
+import { profiles } from '@/data/profiles';
 
 interface Props {
   title: string;
@@ -16,7 +17,7 @@ const {
   keywords,
   canonical,
   active,
-  ogImage = 'https://avatars.githubusercontent.com/u/75870877?v=4',
+  ogImage = 'https://junbuluv.github.io/headshot.jpg',
 } = Astro.props;
 
 const nav = [
@@ -36,7 +37,9 @@ const nav = [
     {keywords && <meta name="keywords" content={keywords} />}
     <meta name="author" content="Jun Yoo" />
     <meta name="robots" content="index, follow" />
+    <meta name="theme-color" content="#5c524a" />
     <link rel="canonical" href={canonical} />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
     <meta property="og:url" content={canonical} />
@@ -46,6 +49,7 @@ const nav = [
     <meta name="twitter:title" content={title} />
     <meta name="twitter:description" content={description} />
     <meta name="twitter:image" content={ogImage} />
+    {profiles.map((p) => <link rel="me" href={p.url} />)}
     <meta
       name="google-site-verification"
       content="5DIOtyNSI-wYLoSOkwlc9-mByCEG3X01fKzWhp--Uho"
@@ -54,7 +58,7 @@ const nav = [
     <slot name="head" />
   </head>
   <body>
-    <header class="sticky top-0 z-50 border-b border-rule bg-cream">
+    <header class="sticky top-0 z-50 border-b border-rule bg-cream/80 backdrop-blur-md">
       <nav
         class="mx-auto flex max-w-content items-center justify-between px-6 py-4"
       >

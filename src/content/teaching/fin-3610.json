@@ -4,5 +4,6 @@
   "institution": "Baruch College, CUNY",
   "role": "Instructor of Record",
   "order": 1,
-  "websiteUrl": "https://edu-webpage-fawn.vercel.app/"
+  "websiteUrl": "https://edu-webpage-fawn.vercel.app/",
+  "semesters": ["Spring 2026"]
 }

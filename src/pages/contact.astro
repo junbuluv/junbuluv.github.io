@@ -1,5 +1,6 @@
 ---
 import BaseLayout from '@layouts/BaseLayout.astro';
+import { profiles } from '@/data/profiles';
 
 const description = 'Contact information for Jun Yoo, Doctoral Candidate in Economics at CUNY.';
 const keywords =
@@ -21,10 +22,19 @@ const keywords =
         <a href="mailto:hyunjun.yoo@baruch.cuny.edu">hyunjun.yoo@baruch.cuny.edu</a><br />
         <a href="mailto:hyoo1@gc.cuny.edu">hyoo1@gc.cuny.edu</a>
       </p>
-      <p class="font-semibold text-ink">GitHub</p>
-      <p>
-        <a href="https://github.com/junbuluv" target="_blank" rel="noopener">github.com/junbuluv</a>
-      </p>
+      <p class="font-semibold text-ink">Profiles</p>
+      <ul class="space-y-1">
+        {
+          profiles.map((p) => (
+            <li>
+              <span class="inline-block w-24 text-ink-soft">{p.label}</span>
+              <a href={p.url} target="_blank" rel="noopener me">
+                {p.display}
+              </a>
+            </li>
+          ))
+        }
+      </ul>
       <p class="font-semibold text-ink">Affiliation</p>
       <p>
         The Graduate Center, CUNY<br />

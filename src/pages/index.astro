@@ -1,41 +1,56 @@
 ---
-import { getCollection } from 'astro:content';
+import { getCollection, getEntry } from 'astro:content';
 import BaseLayout from '@layouts/BaseLayout.astro';
+import { profiles } from '@/data/profiles';
 
 const presentations = await getCollection('presentations');
 const awards = await getCollection('awards');
+const cv = await getEntry('materials', 'cv');
 
 type FeedItem = {
   type: 'Presentation' | 'Award';
   text: string;
-  sortKey: number; // higher = more recent
+  year: number;
 };
 
-const presentationItems: FeedItem[] = presentations.map((p) => ({
-  type: 'Presentation',
-  text: p.data.note
-    ? `${p.data.venue} (${p.data.note}), ${p.data.year}`
-    : `${p.data.venue}, ${p.data.year}`,
-  sortKey: p.data.year,
-}));
-
-// Award `year` is a string ("2026", "2026–2027", "2023, 2025"); take the max numeric token for sorting.
 function maxYearIn(year: string): number {
   const matches = year.match(/\d{4}/g);
   if (!matches) return 0;
   return Math.max(...matches.map((y) => parseInt(y, 10)));
 }
 
-const awardItems: FeedItem[] = awards.map((a) => ({
-  type: 'Award',
-  text: `${a.data.name} (${a.data.year})`,
-  sortKey: maxYearIn(a.data.year),
-}));
+const feed: FeedItem[] = [
+  ...presentations.map<FeedItem>((p) => ({
+    type: 'Presentation',
+    text: p.data.note ? `${p.data.venue} (${p.data.note})` : p.data.venue,
+    year: p.data.year,
+  })),
+  ...awards.map<FeedItem>((a) => ({
+    type: 'Award',
+    text: a.data.name,
+    year: maxYearIn(a.data.year),
+  })),
+]
+  .sort((a, b) => b.year - a.year)
+  .slice(0, 8);
 
-// Most recent first, limit to top 6.
-const feed = [...presentationItems, ...awardItems]
-  .sort((a, b) => b.sortKey - a.sortKey)
-  .slice(0, 6);
+// Group the feed by year while preserving sort order.
+const byYear = new Map<number, FeedItem[]>();
+for (const item of feed) {
+  const arr = byYear.get(item.year) ?? [];
+  arr.push(item);
+  byYear.set(item.year, arr);
+}
+
+function formatUpdated(iso: string): string {
+  const [y, m] = iso.split('-');
+  const monthName = new Date(Number(y), Number(m) - 1, 1).toLocaleString('en-US', {
+    month: 'long',
+  });
+  return `${monthName} ${y}`;
+}
+
+const cvUpdatedLabel = cv ? formatUpdated(cv.data.updated) : '';
 
 const description =
   'Jun Yoo is a Doctoral Candidate in Economics at The Graduate Center, CUNY. Research on information frictions, lender specialization, and small business lending.';
@@ -49,6 +64,7 @@ const keywords =
   keywords={keywords}
   canonical="https://junbuluv.github.io/"
   active="main"
+  ogImage="https://junbuluv.github.io/headshot.jpg"
 >
   <script is:inline type="application/ld+json" slot="head" set:html={JSON.stringify({
     '@context': 'https://schema.org',
@@ -65,9 +81,9 @@ const keywords =
           { '@type': 'EducationalOrganization', name: 'Baruch College, Zicklin School of Business, CUNY' },
         ],
         url: 'https://junbuluv.github.io',
-        image: 'https://avatars.githubusercontent.com/u/75870877?v=4',
+        image: 'https://junbuluv.github.io/headshot.jpg',
         email: ['hyunjun.yoo@baruch.cuny.edu', 'hyoo1@gc.cuny.edu'],
-        sameAs: ['https://github.com/junbuluv'],
+        sameAs: profiles.map((p) => p.url),
         knowsAbout: [
           'Banking',
           'Small Business Lending',
@@ -83,13 +99,9 @@ const keywords =
   <section class="border-b border-rule py-12">
     <div class="flex flex-col items-start gap-10 sm:flex-row">
       <div
-        class="h-[350px] w-[280px] min-w-[280px] overflow-hidden rounded border border-rule bg-cream-alt max-sm:h-[175px] max-sm:w-[140px] max-sm:min-w-[140px]"
+        class="h-[300px] w-[240px] min-w-[240px] overflow-hidden rounded border border-rule bg-cream-alt sm:h-[350px] sm:w-[280px] sm:min-w-[280px]"
       >
-        <img
-          src="https://avatars.githubusercontent.com/u/75870877?v=4"
-          alt="Jun Yoo"
-          class="h-full w-full object-cover"
-        />
+        <img src="/headshot.jpg" alt="Jun Yoo" class="h-full w-full object-cover" />
       </div>
       <div>
         <h1 class="mb-1 text-[1.8rem] font-bold">Jun Yoo</h1>
@@ -106,31 +118,45 @@ const keywords =
         <p class="mb-4 text-[0.95rem] text-ink-soft">
           <strong class="text-ink">Fields:</strong> Banking, Small Business Lending, Private Credit
         </p>
-        <p class="mt-5">
-          <a
-            href="cv.pdf"
-            class="inline-block rounded border border-ink-accent px-5 py-2 text-[0.93rem] transition-colors hover:bg-ink-accent hover:text-white hover:no-underline"
-          >
-            Download CV (PDF)
-          </a>
-        </p>
+        {
+          cv && (
+            <p class="mt-5">
+              <a
+                href={cv.data.file}
+                class="inline-block rounded border border-ink-accent px-5 py-2 text-[0.93rem] transition-colors hover:bg-ink-accent hover:text-white hover:no-underline"
+              >
+                Download CV (PDF)
+              </a>
+              <span class="ml-3 text-[0.8rem] text-ink-soft">
+                Latest version: {cvUpdatedLabel}
+              </span>
+            </p>
+          )
+        }
       </div>
     </div>
   </section>
 
   <section class="py-10">
     <h2 class="mb-5 text-[1.3rem] font-bold text-ink">What's new</h2>
-    <ul class="space-y-3">
+    <div class="space-y-6">
       {
-        feed.map((item) => (
-          <li class="text-[0.95rem] leading-snug">
-            <span class="mr-2 inline-block rounded border border-rule bg-cream-alt px-2 py-[2px] text-[0.75rem] uppercase tracking-wide text-ink-soft">
-              {item.type}
-            </span>
-            <span>{item.text}</span>
-          </li>
+        [...byYear.entries()].map(([year, items]) => (
+          <div>
+            <h3 class="mb-2 text-[0.95rem] font-semibold tracking-wide text-ink-soft">{year}</h3>
+            <ul class="space-y-2">
+              {items.map((item) => (
+                <li class="text-[0.95rem] leading-snug">
+                  <span class="mr-2 inline-block rounded border border-rule bg-cream-alt px-2 py-[2px] text-[0.7rem] uppercase tracking-wide text-ink-soft">
+                    {item.type}
+                  </span>
+                  <span>{item.text}</span>
+                </li>
+              ))}
+            </ul>
+          </div>
         ))
       }
-    </ul>
+    </div>
   </section>
 </BaseLayout>

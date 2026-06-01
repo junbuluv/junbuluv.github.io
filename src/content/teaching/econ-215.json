@@ -3,5 +3,6 @@
   "title": "Money and Banking",
   "institution": "Queens College, CUNY",
   "role": "Instructor of Record",
-  "order": 12
+  "order": 12,
+  "semesters": ["Fall 2025"]
 }

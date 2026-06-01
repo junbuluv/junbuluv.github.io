@@ -4,5 +4,6 @@
   "institution": "Baruch College, CUNY",
   "role": "Teaching Assistant",
   "order": 3,
-  "websiteUrl": "https://edu-webpage-fawn.vercel.app/"
+  "websiteUrl": "https://edu-webpage-fawn.vercel.app/",
+  "semesters": ["Spring 2026", "Fall 2026", "Spring 2027"]
 }
