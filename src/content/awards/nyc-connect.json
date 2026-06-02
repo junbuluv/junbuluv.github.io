@@ -1,4 +1,5 @@
 {
   "name": "NYC Connect Fellowship",
-  "year": "2026"
+  "year": "2026",
+  "includeInFeed": true
 }

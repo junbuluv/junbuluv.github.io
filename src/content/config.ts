@@ -35,10 +35,10 @@ const awards = defineCollection({
     year: z.string(), // string to allow ranges like "2026-2027"
     date: z.string().optional(), // ISO date for What's-new sort
     note: z.string().optional(),
-    // Set to true to keep the award in the CV/research record but suppress
-    // it from the homepage "What's new" feed (e.g. long-running base stipends
-    // that aren't really "news").
-    excludeFromFeed: z.boolean().optional().default(false),
+    // Opt-in: set to true to surface this award in the homepage "What's new"
+    // feed. Awards default to CV/research-record only — the feed is reserved
+    // for the few honors worth announcing as news.
+    includeInFeed: z.boolean().optional().default(false),
   }),
 });
 
