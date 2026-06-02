@@ -93,6 +93,12 @@ Path aliases (`tsconfig.json`): `@components/*`, `@layouts/*`, `@content/*`,
   rename a page (or change a PDF URL), update it manually — there is no
   sitemap integration. Keep `<lastmod>` current for changed entries.
 - SEO keywords: each page sets its own `keywords` prop on `BaseLayout`.
+- Styling new UI → follow the burgundy/cream system: use the `burgundy`
+  tokens (`text-burgundy`, `border-burgundy`, `bg-burgundy-tint`,
+  `border-burgundy-line`) for accents, the `.card` class
+  (`src/styles/global.css`) for list/panel surfaces, and
+  `inline-block border-b border-burgundy pb-1` for section `<h2>` underlines.
+  The header hairline uses the softer `border-burgundy-line`.
 
 ## Gotchas
 
@@ -109,10 +115,14 @@ Path aliases (`tsconfig.json`): `@components/*`, `@layouts/*`, `@content/*`,
 - `AGENTS.md` — AI-agent collaboration conventions + verify-before-deploy.
 - `ARCHITECTURE.md` — design rationale (why Astro, why Tailwind, why
   hand-maintained sitemap, etc.).
+- `docs/superpowers/specs/` & `docs/superpowers/plans/` — design specs and
+  implementation plans from brainstormed feature work (e.g. the burgundy
+  design refresh).
 
 ## Local files / gitignore
 
 - `cv.aux`, `cv.log`, `cv.out`, `cv.fls`, `cv.fdb_latexmk`, `cv.synctex.gz` — LaTeX build artifacts
 - `node_modules/`, `dist/`, `.astro/` — Node + Astro output
 - `preview*.png`, `.DS_Store`, `.playwright-mcp/` — local artifacts
+- `.superpowers/` — Visual Companion brainstorm mockups (session-local)
 - `scholarship_application_2026-2027/` — private personal documents (W-2s etc.); never commit
