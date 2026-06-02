@@ -10,8 +10,12 @@ Live: https://junbuluv.github.io
   and the hand-maintained sitemap.
 - **Tailwind 3** via `@astrojs/tailwind` (no base styles; our own reset in
   `src/styles/global.css`). Burgundy/cream serif palette is the project's
-  identity — defined in `tailwind.config.mjs` under `colors` and
-  `fontFamily.serif`.
+  identity — defined in `tailwind.config.mjs` under `colors` (the `burgundy`
+  token group drives links, active nav, the CV button, badges, and 1px
+  hairlines; `cream.card` is the card surface) and `fontFamily.serif`. The
+  reusable `.card` component class (soft surface + hover lift) lives in
+  `src/styles/global.css` and is used by the What's-new feed and research
+  papers.
 - **Content collections** with Zod schemas for `papers`, `presentations`,
   `awards`, and `teaching` (`src/content/config.ts`). All site data is JSON
   in `src/content/<collection>/`; pages just `getCollection()` and render.
