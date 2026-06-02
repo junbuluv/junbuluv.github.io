@@ -14,7 +14,7 @@
   /* Subtle hover transition on every text link. Burgundy → soft-burgundy with a
      fading underline. Tailwind handles the colors; this just adds the timing. */
   a {
-    @apply text-ink-accent no-underline;
+    @apply text-burgundy no-underline;
     transition:
       color 200ms ease,
       text-decoration-color 200ms ease,
@@ -22,11 +22,27 @@
   }
 
   a:hover {
-    @apply text-ink-hover underline;
+    @apply text-burgundy-hover underline;
   }
 }
 
 @layer components {
+  /* Soft raised card used for the What's-new feed and research papers.
+     Gentle hover lift; border warms to burgundy. */
+  .card {
+    @apply rounded-lg border border-rule bg-cream-card p-4;
+    transition:
+      transform 150ms ease,
+      border-color 150ms ease,
+      box-shadow 150ms ease;
+  }
+
+  .card:hover {
+    @apply border-burgundy-line;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 16px rgba(122, 46, 58, 0.08);
+  }
+
   /* Scroll-reveal: starts faded + nudged down; .is-visible removes both. */
   .reveal {
     opacity: 0;
@@ -85,5 +101,10 @@
   .reveal {
     opacity: 1;
     transform: none;
+  }
+
+  .card:hover {
+    transform: none;
+    box-shadow: none;
   }
 }
