@@ -38,7 +38,7 @@ const nav = [
     {keywords && <meta name="keywords" content={keywords} />}
     <meta name="author" content="Jun Yoo" />
     <meta name="robots" content="index, follow" />
-    <meta name="theme-color" content="#5c524a" />
+    <meta name="theme-color" content="#7a2e3a" />
     <link rel="canonical" href={canonical} />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <meta property="og:title" content={title} />
@@ -60,7 +60,7 @@ const nav = [
     <slot name="head" />
   </head>
   <body>
-    <header class="sticky top-0 z-50 border-b border-rule bg-cream/80 backdrop-blur-md">
+    <header class="sticky top-0 z-50 border-b border-burgundy bg-cream/80 backdrop-blur-md">
       <nav
         class="mx-auto flex max-w-content items-center justify-between px-6 py-4"
       >
@@ -76,8 +76,8 @@ const nav = [
                   class:list={[
                     'text-[0.92rem] tracking-[0.02em] hover:no-underline',
                     item.key === active
-                      ? 'font-semibold text-ink-accent'
-                      : 'text-ink-soft hover:text-ink-accent',
+                      ? 'border-b border-burgundy pb-0.5 font-semibold text-burgundy'
+                      : 'text-ink-soft hover:text-burgundy',
                   ]}
                 >
                   {item.label}
