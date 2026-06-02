@@ -62,12 +62,12 @@ const nav = [
   <body>
     <header class="sticky top-0 z-50 border-b border-burgundy-line bg-cream/80 backdrop-blur-md">
       <nav
-        class="mx-auto flex max-w-content items-center justify-between px-6 py-4"
+        class="mx-auto flex max-w-content flex-col items-center gap-2 px-6 py-3 sm:flex-row sm:justify-between sm:gap-0 sm:py-4"
       >
-        <div class="text-[1.15rem] font-bold text-ink">
+        <div class="shrink-0 whitespace-nowrap text-[1.15rem] font-bold text-ink">
           <a href="index.html" class="text-inherit no-underline hover:no-underline">Jun Yoo</a>
         </div>
-        <ul class="flex list-none gap-6">
+        <ul class="flex list-none gap-4 sm:gap-6">
           {
             nav.map((item) => (
               <li>
@@ -99,9 +99,22 @@ const nav = [
 
     <!-- Scroll-reveal: anything marked `.reveal` fades + slides up on first
          viewport entry. Re-runs after Astro view transitions because
-         `astro:page-load` fires for every navigation. -->
+         `astro:page-load` fires for every navigation.
+
+         On a *client navigation* (View Transitions), content that's already in
+         the viewport is shown instantly (`.reveal-instant`) — replaying the
+         entrance fade on top of the ClientRouter cross-fade made navigation
+         feel like a sluggish double-animation. Below-the-fold content is still
+         observed so the scroll-reveal flourish survives. The first full page
+         load still animates everything for the entrance effect. -->
     <script>
+      // Module scripts run once; astro:page-load re-arms on every navigation,
+      // so this flag distinguishes the first load from later client routing.
+      let firstLoad = true;
+
       function armReveal() {
+        const animate = firstLoad;
+        firstLoad = false;
         const els = document.querySelectorAll<HTMLElement>('.reveal:not(.is-visible)');
         if (!('IntersectionObserver' in window) || els.length === 0) {
           els.forEach((el) => el.classList.add('is-visible'));
@@ -118,7 +131,14 @@ const nav = [
           },
           { rootMargin: '0px 0px -40px 0px', threshold: 0.05 },
         );
-        els.forEach((el) => io.observe(el));
+        els.forEach((el) => {
+          const inView = el.getBoundingClientRect().top < window.innerHeight * 0.95;
+          if (inView && !animate) {
+            el.classList.add('reveal-instant', 'is-visible');
+          } else {
+            io.observe(el);
+          }
+        });
       }
       document.addEventListener('astro:page-load', armReveal);
     </script>

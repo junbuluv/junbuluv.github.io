@@ -58,6 +58,12 @@
     transform: translateY(0);
   }
 
+  /* Shown immediately on client navigation — no entrance fade to stack on top
+     of the ClientRouter cross-fade. See the reveal script in BaseLayout. */
+  .reveal.reveal-instant {
+    transition: none;
+  }
+
   /* Animated abstract toggle (replaces <details>/<summary> default snap).
      Uses the grid-template-rows 0fr → 1fr trick so close animates too. */
   .abstract-wrapper .abstract-content {
