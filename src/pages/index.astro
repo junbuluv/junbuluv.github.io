@@ -4,41 +4,25 @@ import BaseLayout from '@layouts/BaseLayout.astro';
 import { profiles } from '@/data/profiles';
 
 const presentations = await getCollection('presentations');
-const awards = await getCollection('awards');
 const cv = await getEntry('materials', 'cv');
 
 type FeedItem = {
-  type: 'Presentation' | 'Award';
+  type: 'Presentation';
   text: string;
   year: number;
 };
-
-function maxYearIn(year: string): number {
-  const matches = year.match(/\d{4}/g);
-  if (!matches) return 0;
-  return Math.max(...matches.map((y) => parseInt(y, 10)));
-}
 
 // Brown bags are internal/departmental and don't belong in a public "What's
 // new" feed; they still appear on the research page under each paper.
 const isBrownBag = (venue: string) => /brown\s*bag/i.test(venue);
 
-const feed: FeedItem[] = [
-  ...presentations
-    .filter((p) => !isBrownBag(p.data.venue))
-    .map<FeedItem>((p) => ({
-      type: 'Presentation',
-      text: p.data.note ? `${p.data.venue} (${p.data.note})` : p.data.venue,
-      year: p.data.year,
-    })),
-  ...awards
-    .filter((a) => !a.data.excludeFromFeed)
-    .map<FeedItem>((a) => ({
-      type: 'Award',
-      text: a.data.name,
-      year: maxYearIn(a.data.year),
-    })),
-]
+const feed: FeedItem[] = presentations
+  .filter((p) => !isBrownBag(p.data.venue))
+  .map<FeedItem>((p) => ({
+    type: 'Presentation',
+    text: p.data.note ? `${p.data.venue} (${p.data.note})` : p.data.venue,
+    year: p.data.year,
+  }))
   .sort((a, b) => b.year - a.year)
   .slice(0, 8);
 
@@ -155,9 +139,6 @@ const keywords =
             <ul class="space-y-2">
               {items.map((item) => (
                 <li class="text-[0.95rem] leading-snug">
-                  <span class="mr-2 inline-block rounded border border-rule bg-cream-alt px-2 py-[2px] text-[0.7rem] uppercase tracking-wide text-ink-soft">
-                    {item.type}
-                  </span>
                   <span>{item.text}</span>
                 </li>
               ))}
