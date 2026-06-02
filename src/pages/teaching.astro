@@ -34,13 +34,16 @@ const keywords =
             <h3 class="mb-2 mt-4 text-[1rem] font-semibold text-ink-soft">{institution}</h3>
             <ul class="list-none pl-0">
               {items.map((course) => {
-                const roleSuffix =
-                  course.data.role === 'Teaching Assistant' ? ' (Teaching Assistant)' : '';
+                // Role and semesters share one muted meta line beneath the
+                // title: "Adjunct Lecturer · Spring 2026". Role is always
+                // present (schema default); semesters are optional.
+                const meta = [course.data.role, course.data.semesters?.join(', ')]
+                  .filter(Boolean)
+                  .join(' · ');
                 return (
                   <li class="py-1 text-[0.95rem]">
                     <div>
                       {course.data.code} &mdash; {course.data.title}
-                      {roleSuffix}
                       {course.data.websiteUrl && (
                         <>
                           {' '}
@@ -50,11 +53,7 @@ const keywords =
                         </>
                       )}
                     </div>
-                    {course.data.semesters && course.data.semesters.length > 0 && (
-                      <div class="text-[0.85rem] text-ink-soft">
-                        {course.data.semesters.join(', ')}
-                      </div>
-                    )}
+                    <div class="text-[0.85rem] text-ink-soft">{meta}</div>
                   </li>
                 );
               })}

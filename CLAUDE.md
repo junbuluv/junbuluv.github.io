@@ -26,8 +26,8 @@ Path aliases (`tsconfig.json`): `@components/*`, `@layouts/*`, `@content/*`,
 - Layout: `src/layouts/BaseLayout.astro` (nav + footer + SEO + JSON-LD slot + `<ClientRouter />`)
 - Content collections:
   - `src/content/papers/<slug>.json` — working papers; `research.html` lists them by `order`.
-  - `src/content/presentations/<slug>.json` — talks; the index "What's new" feed pulls from here (Brown Bag venues are filtered out).
-  - `src/content/awards/<slug>.json` — fellowships/honors; What's new pulls from here.
+  - `src/content/presentations/<slug>.json` — talks; the index "What's new" feed pulls current-year talks from here (Brown Bag venues are filtered out).
+  - `src/content/awards/<slug>.json` — fellowships/honors; only awards with `"includeInFeed": true` (and a year spanning the current year) appear in What's new.
   - `src/content/teaching/<slug>.json` — courses; `teaching.html` groups by `institution`.
   - `src/content/materials/<slug>.json` — job-market documents (CV today; research/teaching statements later). The homepage's "Latest version" stamp reads `materials/cv.json` → `updated`.
 - Site-wide data module: `src/data/profiles.ts` — single source of truth for SSRN/LinkedIn/GitHub URLs (drives `rel="me"`, JSON-LD `sameAs`, and the contact page list).
@@ -64,13 +64,20 @@ Path aliases (`tsconfig.json`): `@components/*`, `@layouts/*`, `@content/*`,
 - Adding a talk → drop a JSON file in `src/content/presentations/<slug>.json`.
   It will appear under the matched paper on `/research.html` and (unless the
   venue contains "Brown Bag" — those are filtered) in the homepage
-  "What's new" feed (sorted by `year` desc, top 8, grouped by year).
+  "What's new" feed — but **only if its `year` equals the current calendar
+  year**. The feed is scoped to the current year (resolved at build time via
+  `new Date().getFullYear()`, so it auto-rolls on the next deploy each year),
+  capped at 8 items, and grouped under a single year heading.
 - Adding an award → JSON in `src/content/awards/<slug>.json`. `year` is a
-  string ("2026", "2026–2027", "2023, 2025"); What's-new sorts by the
-  largest 4-digit year token in that string.
-- Adding a course → JSON in `src/content/teaching/<slug>.json`. Use
-  `role: "Teaching Assistant"` to render a `(Teaching Assistant)` tag and
-  `websiteUrl` for the `[course website]` link.
+  string ("2026", "2026–2027", "2023, 2025"). Awards are **opt-in** for the
+  homepage feed: set `"includeInFeed": true` to surface one (default is
+  CV/research-record only). An opted-in award appears in What's new only when
+  its year span includes the current year, and it displays under the current
+  year (a "2026–2027" fellowship shows under 2026, not 2027).
+- Adding a course → JSON in `src/content/teaching/<slug>.json`. `role` is one
+  of `Adjunct Lecturer` (default) | `Instructor of Record` | `Teaching
+  Assistant`; it renders in a muted meta line beneath the title as
+  `<role> · <semesters>`. Use `websiteUrl` for the `[course website]` link.
 - Adding a paper → JSON in `src/content/papers/<slug>.json` with required
   `title`, `order`, `abstract`. Optional `coauthors`, `url`, `urlLabel`,
   `status`, `presentations` (free-form strings). The research page reads

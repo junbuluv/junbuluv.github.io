@@ -49,7 +49,9 @@ const teaching = defineCollection({
     code: z.string(),
     title: z.string(),
     institution: z.enum(['Baruch College, CUNY', 'Queens College, CUNY']),
-    role: z.enum(['Instructor of Record', 'Teaching Assistant']).default('Instructor of Record'),
+    role: z
+      .enum(['Adjunct Lecturer', 'Instructor of Record', 'Teaching Assistant'])
+      .default('Adjunct Lecturer'),
     order: z.number(),
     websiteUrl: z.string().url().optional(),
     // Terms taught, in human form ("Fall 2025", "Spring 2026"). Rendered as a
