@@ -48,6 +48,7 @@ Path aliases (`tsconfig.json`): `@components/*`, `@layouts/*`, `@content/*`,
 - **Dev**: `npm run dev` → local preview at <http://localhost:4321>.
 - **Typecheck**: `npm run typecheck` (wraps `astro check`).
 - **Build**: `npm run build` → static output in `dist/`.
+- **Format**: `npm run format` (prettier over `src/**/*.{ts,astro,json,css,md}`).
 - **CV**: `npm run build:cv` (pdflatex × 2 + copy to `public/`).
 - **Deploy**: `npm run deploy` runs the Astro build then `npx gh-pages -d dist
   -b gh-pages --dotfiles` to publish the built output to the `gh-pages`
@@ -99,6 +100,11 @@ Path aliases (`tsconfig.json`): `@components/*`, `@layouts/*`, `@content/*`,
   (`src/styles/global.css`) for list/panel surfaces, and
   `inline-block border-b border-burgundy pb-1` for section `<h2>` underlines.
   The header hairline uses the softer `border-burgundy-line`.
+  The **neutral base** (non-accent) tokens, also in `tailwind.config.mjs`:
+  `text-ink` (body) / `text-ink-soft` (secondary text), `border-rule`
+  (default borders & dividers), `bg-cream` (page) / `bg-cream-alt` (chips,
+  panels) / `bg-cream-card` (the `.card` surface). Reach for burgundy only
+  for accents; everything else uses ink/rule/cream.
 
 ## Gotchas
 
