@@ -7,8 +7,9 @@ description: >-
   presentation venue, changing how venues are formatted, rebuilding the CV
   PDF, or deploying — even if the user only mentions "the CV", "my talks",
   "presentations", "awards", or "the research page" without naming files.
-  Encodes the dual-source venue model (CV uses full names, web uses
-  abbreviations), the build:cv + pdftotext verification step, and the
+  Encodes the dual-source venue model (CV Presentations section uses full
+  names; web and CV "Presented at" lines use abbreviations for EFA/FIRS/FMA-
+  tier venues), the build:cv + pdftotext verification step, and the
   commit → push main → npm run deploy → verify-live sequence so changes
   don't silently ship stale or page-overflowing output.
 ---
@@ -28,7 +29,7 @@ A venue or talk can live in up to **three** places. Know which you're editing:
 
 | Surface | File(s) | Wording style |
 |---|---|---|
-| CV PDF | `cv.tex` (`Presentations`, `Working Papers`, `Honors and Awards`) | **Full** formal names |
+| CV PDF | `cv.tex` (`Presentations`, `Working Papers`, `Honors and Awards`) | **Full** names in `Presentations`; web-style abbreviations in `Presented at:` lines |
 | Research page (`/research.html`) | `src/content/papers/<slug>.json` → `presentations[]` | **Abbreviated** |
 | Homepage "What's new" feed | `src/content/presentations/<slug>.json` → `venue` + `year` | **Abbreviated** |
 
@@ -49,10 +50,20 @@ talks whose `year` equals the current calendar year (resolved at build time).
   string drops the year: `EFA (Doctoral Tutorial)`.
 - The research page joins entries with `, ` (`research.astro`).
 
-**CV** (`cv.tex`) — **full** formal names, never the web abbreviations:
-`European Finance Association Annual Meeting --- Doctoral Tutorial`
-(`---` is the LaTeX em-dash). Keep one style per surface — don't mix one
-abbreviated host into a list of spelled-out ones.
+**CV** (`cv.tex`) — two registers, by section:
+- **Presentations section** (the formal record): **full** formal names —
+  `European Finance Association Annual Meeting --- Doctoral Tutorial`
+  (`---` is the LaTeX em-dash). Never abbreviate here.
+- **"Presented at:" lines under Working Papers** (compact cross-reference):
+  use the **website's abbreviations** for marquee associations only —
+  `EFA Doctoral Tutorial (2026); FIRS Ph.D. Student Sessions (2026);
+  FMA (2025)` — plus `UDel--Philadelphia Fed` (`--` = en-dash). Venues with
+  no recognized initialism (LaBS workshop, Brown Bags) stay spelled out.
+  Poster/role qualifiers go inside the year parenthetical: `(poster, 2025)`.
+
+Keep one style per register — don't mix one abbreviated host into a list of
+spelled-out ones (or vice versa). Safe-to-abbreviate tier: EFA, FIRS, FMA
+(and peers like AFA, WFA, NBER); everything else spells out.
 
 ## cv.tex section structure
 
