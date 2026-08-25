@@ -8,13 +8,13 @@
   }
 
   body {
-    @apply bg-cream font-serif text-[17px] leading-[1.7] text-ink;
+    @apply bg-paper font-serif text-[17px] leading-[1.7] text-ink;
   }
 
-  /* Subtle hover transition on every text link. Burgundy → soft-burgundy with a
+  /* Subtle hover transition on every text link. Burgundy → soft-navy with a
      fading underline. Tailwind handles the colors; this just adds the timing. */
   a {
-    @apply text-burgundy no-underline;
+    @apply text-navy no-underline;
     transition:
       color 200ms ease,
       text-decoration-color 200ms ease,
@@ -22,15 +22,15 @@
   }
 
   a:hover {
-    @apply text-burgundy-hover underline;
+    @apply text-navy-hover underline;
   }
 }
 
 @layer components {
   /* Soft raised card used for the What's-new feed and research papers.
-     Gentle hover lift; border warms to burgundy. */
+     Gentle hover lift; border warms to navy. */
   .card {
-    @apply rounded-lg border border-rule bg-cream-card p-4;
+    @apply rounded-lg border border-rule bg-paper-card p-4;
     transition:
       transform 150ms ease,
       border-color 150ms ease,
@@ -38,10 +38,10 @@
   }
 
   .card:hover {
-    @apply border-burgundy-line;
+    @apply border-navy-line;
     transform: translateY(-2px);
-    /* burgundy.DEFAULT (#7a2e3a) at 8% — keep in sync if that token changes. */
-    box-shadow: 0 6px 16px rgba(122, 46, 58, 0.08);
+    /* navy.DEFAULT (#05336B) at 8% — keep in sync if that token changes. */
+    box-shadow: 0 6px 16px rgba(5, 51, 107, 0.08);
   }
 
   /* Scroll-reveal: starts faded + nudged down; .is-visible removes both. */

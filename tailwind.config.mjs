@@ -4,27 +4,28 @@ export default {
   theme: {
     extend: {
       colors: {
-        // Burgundy accent over a warm cream/brown base. Burgundy drives links,
-        // active nav, the CV button, badges, and 1px hairlines; ink/cream/rule
+        // Baruch navy (#05336B, the college's official blue) over a cool
+        // oxford paper base. Navy drives links, active nav, the solid header
+        // band, the CV button, badges, and 1px hairlines; ink/paper/rule
         // remain the neutral base.
         ink: {
-          DEFAULT: '#34302d', // body text
-          soft: '#6e6862',    // secondary text
-          accent: '#5c524a',  // legacy taupe (kept for non-accent borders)
-          hover: '#7a6e64',   // legacy hover
+          DEFAULT: '#2b3441', // body text (slate)
+          soft: '#66707d',    // secondary text
+          accent: '#4c596a',  // legacy slot (non-accent borders)
+          hover: '#7c8899',   // legacy hover
         },
-        burgundy: {
-          DEFAULT: '#7a2e3a', // links, active nav, CV button, badge text, hairlines
-          hover: '#9a4452',   // link / interactive hover
-          tint: '#f6e9eb',    // badge background, faint fills
-          line: '#d8b6bc',    // soft burgundy border (badges, card hover)
+        navy: {
+          DEFAULT: '#05336B', // links, active nav, header band, badges, hairlines
+          hover: '#1a4e94',   // link / interactive hover
+          tint: '#e9eef6',    // badge background, faint fills
+          line: '#b9c8dd',    // soft navy border (badges, card hover)
         },
-        cream: {
-          DEFAULT: '#f7f3e9', // page background
-          alt: '#ede8da',     // chip / panel background
-          card: '#fffdf8',    // card surface (a hair lighter than the page)
+        paper: {
+          DEFAULT: '#f5f7fa', // page background (cool oxford)
+          alt: '#e9edf2',     // chip / panel background
+          card: '#ffffff',    // card surface
         },
-        rule: '#ddd8d2',      // borders, dividers
+        rule: '#d9dfe7',      // borders, dividers
       },
       fontFamily: {
         serif: ['"Palatino Linotype"', 'Palatino', '"Book Antiqua"', 'Georgia', 'serif'],
