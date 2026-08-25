@@ -21,6 +21,15 @@
    to `lender-specialization.json` `presentations[]`.
 5. Build, verify rendered output, commit → push main → deploy → verify live.
 
+## Outcome
+
+Phase 1 shipped. Cream+navy mockup rejected ("cream and blue don't go well");
+three cooler-base variants mocked (porcelain / oxford / navy banner).
+**Shipped: V3 navy banner** — solid `#05336B` header band, white nav text,
+cool oxford paper base, slate ink. Tokens renamed `burgundy`→`navy`,
+`cream`→`paper`; favicon, `theme-color`, and `cv.tex` link color moved to
+the same navy.
+
 ## Phase 2 — navy theme mockup (no deploy)
 
 1. Branch `blue-theme`. Value-swap the `burgundy` token group in

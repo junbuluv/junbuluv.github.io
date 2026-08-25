@@ -1,6 +1,6 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-label="JY">
-  <rect width="64" height="64" rx="10" fill="#5c524a"/>
+  <rect width="64" height="64" rx="10" fill="#05336B"/>
   <text x="50%" y="54%" text-anchor="middle" dominant-baseline="middle"
         font-family="Palatino, 'Palatino Linotype', 'Book Antiqua', Georgia, serif"
-        font-size="34" font-weight="700" fill="#f7f3e9">JY</text>
+        font-size="34" font-weight="700" fill="#f5f7fa">JY</text>
 </svg>
