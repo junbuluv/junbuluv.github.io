@@ -29,11 +29,24 @@
 \reversemarginpar
 
 \usepackage{comment}
-\usepackage[paper=a4paper,
-            marginparwidth=24mm,
+
+% ---- Job-market variants ------------------------------------------------
+% `pdflatex cv.tex` alone builds the general (website) CV on A4.
+% `npm run build:cv:jm` builds the two job-market variants (repo-local,
+% never published):
+%   cv_us.pdf  — letter paper, Job Market Paper section, Work Authorization
+%   cv_eu.pdf  — A4 paper, Job Market Paper section, Citizenship (no US
+%                immigration status, deliberately)
+% Either variant defines \CVJM for the content shared by both.
+\ifdefined\CVUS \def\CVJM{}\fi
+\ifdefined\CVEU \def\CVJM{}\fi
+% -------------------------------------------------------------------------
+
+\usepackage[marginparwidth=24mm,
             marginparsep=1mm,
             margin=15mm,
             includemp]{geometry}
+\ifdefined\CVUS \geometry{paper=letterpaper}\else \geometry{paper=a4paper}\fi
 
 \setlength{\parindent}{0in}
 
@@ -148,17 +161,40 @@ New York, NY     & \texttt{LinkedIn:} \href{https://www.linkedin.com/in/jun-yoo-
 
 \end{outerlist}
 
-\vspace{5mm}
-\section{Working Papers}
-\vspace{-0.25in}
-
-\begin{outerlist}
+% Paper bodies defined once so the general and job-market branches below
+% can't drift apart.
+\newcommand{\PaperSpecialization}{%
     \item \href{https://papers.ssrn.com/sol3/papers.cfm?abstract_id=5445275}{Public Information, Private Expertise, and Lender Specialization} \hfill \textit{Under Review} \\
-    {\small\textit{Presented at: EFA Doctoral Tutorial (2026); FIRS Ph.D. Student Sessions (2026); FMA (2025); LaBS International Banking Workshop, HSE University (2025); UDel--Philadelphia Fed Fintech \& Financial Institutions Conference (poster, 2025); Baruch College \& The Graduate Center, CUNY Brown Bag Seminars (2025)}}
+    {\small\textit{Presented at: EFA Doctoral Tutorial (2026); FIRS Ph.D. Student Sessions (2026); FMA (2025); LaBS International Banking Workshop, HSE University (2025); UDel--Philadelphia Fed Fintech \& Financial Institutions Conference (poster, 2025); Baruch College \& The Graduate Center, CUNY Brown Bag Seminars (2025)}}%
+}
+\newcommand{\PaperCollateral}{%
     \item When the Home Is Out of Reach: Collateral Choice and the Reconstruction of Recovery \\
     \textit{with Linda Allen and Fabrice Tourre} \hfill \textit{Work in Progress} \\
-    {\small\textit{Presented at: Baruch College Brown Bag Seminar (2026)}}
+    {\small\textit{Presented at: Baruch College Brown Bag Seminar (2026)}}%
+}
+
+\vspace{5mm}
+\ifdefined\CVJM
+\section{Job Market Paper}
+\vspace{-0.25in}
+\begin{outerlist}
+    \PaperSpecialization
 \end{outerlist}
+
+\vspace{0.1in}
+\section{Working Papers}
+\vspace{-0.25in}
+\begin{outerlist}
+    \PaperCollateral
+\end{outerlist}
+\else
+\section{Working Papers}
+\vspace{-0.25in}
+\begin{outerlist}
+    \PaperSpecialization
+    \PaperCollateral
+\end{outerlist}
+\fi
 
 
 \section{Presentations}
@@ -215,16 +251,17 @@ New York, NY     & \texttt{LinkedIn:} \href{https://www.linkedin.com/in/jun-yoo-
     Zicklin School of Business, Baruch College, CUNY. \\
     \textit{Hybrid course experiment with Babak Somekh, Konstantin Kucheryavyy, and Theodore Joyce.} \\
     \href{https://edu-webpage-fawn.vercel.app/}{Course website}
-\item {Corporate Finance} \hfill Spring 2026 \\
+\item {Corporate Finance} --- \textit{Adjunct Lecturer} \hfill Spring 2026 \\
     Zicklin School of Business, Baruch College, CUNY. \\
     \href{https://edu-webpage-fawn.vercel.app/}{Course website}
-\item {Investment Analysis} \hfill Spring 2026 \\
+\item {Investment Analysis} --- \textit{Adjunct Lecturer} \hfill Spring 2026 \\
     Zicklin School of Business, Baruch College, CUNY.
-\item {Money and Banking} \hfill Fall 2025 \\
+\item {Money and Banking} --- \textit{Adjunct Lecturer} \hfill Fall 2025 \\
     Department of Economics, Queens College, CUNY.
-\item {Introduction to Macroeconomics} \hfill Fall 2022, Spring 2023, Fall 2024, Spring 2025 \\
-    Department of Economics, Queens College, CUNY.
-\item {Introduction to Microeconomics} \hfill Fall 2024, Spring 2025 \\
+\item {Introduction to Macroeconomics} --- \textit{Adjunct Lecturer} \\
+    Department of Economics, Queens College, CUNY. \\
+    \mbox{}\hfill Fall 2022--Spring 2023, Fall 2024--Spring 2025
+\item {Introduction to Microeconomics} --- \textit{Adjunct Lecturer} \hfill Fall 2024, Spring 2025 \\
     Department of Economics, Queens College, CUNY.
 
 \end{outerlist}
@@ -254,6 +291,21 @@ New York, NY     & \texttt{LinkedIn:} \href{https://www.linkedin.com/in/jun-yoo-
 \begin{outerlist}
   \item Korean (native), English (fluent)
 \end{outerlist}
+
+\ifdefined\CVUS
+\section{Work \mbox{Authorization}}
+\vspace{-0.25in}
+\begin{outerlist}
+  \item U.S. permanent residency application in process; no visa sponsorship required.
+\end{outerlist}
+\fi
+\ifdefined\CVEU
+\section{Citizenship}
+\vspace{-0.25in}
+\begin{outerlist}
+  \item Republic of Korea
+\end{outerlist}
+\fi
 
 \section{References}
 \vspace{-0.25in}

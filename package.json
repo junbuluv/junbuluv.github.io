@@ -11,6 +11,7 @@
     "dev": "astro dev",
     "start": "astro dev",
     "build:cv": "pdflatex -interaction=nonstopmode cv.tex && pdflatex -interaction=nonstopmode cv.tex && cp cv.pdf public/cv.pdf",
+    "build:cv:jm": "pdflatex -interaction=nonstopmode -jobname=cv_us '\\def\\CVUS{}\\input{cv.tex}' && pdflatex -interaction=nonstopmode -jobname=cv_us '\\def\\CVUS{}\\input{cv.tex}' && pdflatex -interaction=nonstopmode -jobname=cv_eu '\\def\\CVEU{}\\input{cv.tex}' && pdflatex -interaction=nonstopmode -jobname=cv_eu '\\def\\CVEU{}\\input{cv.tex}'",
     "build": "cp cv.pdf public/cv.pdf 2>/dev/null || true && astro build",
     "preview": "astro preview",
     "astro": "astro",

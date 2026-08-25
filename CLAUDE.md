@@ -43,6 +43,13 @@ Path aliases (`tsconfig.json`): `@components/*`, `@layouts/*`, `@content/*`,
   twice and copies `cv.pdf` into `public/`. The regular `npm run build` also
   copies an already-built `cv.pdf` into `public/` so a fresh `npm run build`
   always ships the latest PDF.
+- **Job-market CV variants**: `npm run build:cv:jm` builds `cv_us.pdf`
+  (letter paper, "Job Market Paper" section, Work Authorization line) and
+  `cv_eu.pdf` (A4, Citizenship line, deliberately no US immigration status)
+  from the same `cv.tex` via `\CVUS`/`\CVEU` toggles. These are
+  **repo-local application materials — gitignored, never committed or
+  published** (the repo is public). The site serves only the general
+  `public/cv.pdf`.
 
 ## Build / deploy
 
@@ -50,7 +57,8 @@ Path aliases (`tsconfig.json`): `@components/*`, `@layouts/*`, `@content/*`,
 - **Typecheck**: `npm run typecheck` (wraps `astro check`).
 - **Build**: `npm run build` → static output in `dist/`.
 - **Format**: `npm run format` (prettier over `src/**/*.{ts,astro,json,css,md}`).
-- **CV**: `npm run build:cv` (pdflatex × 2 + copy to `public/`).
+- **CV**: `npm run build:cv` (pdflatex × 2 + copy to `public/`);
+  `npm run build:cv:jm` for the local US/EU job-market variants.
 - **Deploy**: `npm run deploy` runs the Astro build then `npx gh-pages -d dist
   -b gh-pages --dotfiles` to publish the built output to the `gh-pages`
   branch. GitHub Pages serves from `gh-pages`. The `main` branch holds

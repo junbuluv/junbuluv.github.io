@@ -84,6 +84,15 @@ Escape `&` as `\&` everywhere in LaTeX.
 ## Build & verify the CV — never ship blind
 
 `npm run build:cv` runs `pdflatex` twice and copies `cv.pdf` into `public/`.
+
+**Job-market variants**: `npm run build:cv:jm` builds `cv_us.pdf` (letter,
+Job Market Paper section, Work Authorization) and `cv_eu.pdf` (A4,
+Citizenship, no US immigration status) from the same `cv.tex` via
+`\CVUS`/`\CVEU` toggles; paper bodies live in `\PaperSpecialization`/
+`\PaperCollateral` macros so branches can't drift. The variants are
+**gitignored and never published** — repo is public. After editing
+`cv.tex`, rebuild and page-count **all three** (each is tuned to 2 pages).
+
 After any `cv.tex` edit, **always**:
 
 1. `npm run build:cv` and confirm `Output written on cv.pdf (… pages …)`.

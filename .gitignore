@@ -6,6 +6,11 @@ cv.fls
 cv.fdb_latexmk
 cv.synctex.gz
 
+# Job-market CV variants (repo-local applications material — the repo is
+# public, so the PDFs must never be committed; rebuild with build:cv:jm)
+cv_us.*
+cv_eu.*
+
 # Local preview / debug screenshots
 preview*.png
 live-*.png
