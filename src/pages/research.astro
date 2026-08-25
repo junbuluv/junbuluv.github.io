@@ -60,7 +60,11 @@ const ldGraph = papers.map((p) => ({
             {paper.data.coauthors && (
               <>
                 <br />
-                <span class="text-[0.95rem]">{paper.data.coauthors.join(', ')}</span>
+                <span class="text-[0.95rem]"
+                  >with {new Intl.ListFormat('en', { type: 'conjunction' }).format(
+                    paper.data.coauthors
+                  )}</span
+                >
               </>
             )}
             <div class="abstract-wrapper mt-2">

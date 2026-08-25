@@ -1,7 +1,10 @@
 {
   "title": "When the Home Is Out of Reach: Collateral Choice and the Reconstruction of Recovery",
   "order": 2,
-  "coauthors": ["Linda Allen", "Fabrice Tourre", "Jun Yoo"],
+  "coauthors": [
+    "Linda Allen",
+    "Fabrice Tourre"
+  ],
   "abstract": "We study how lenders reallocate recovery effort across collateral margins when regulation replaces discretion with standardized rules. A 2014 SBA reform increased the recognized value of business collateral relative to expected liquidation recovery, creating a gap between regulatory compliance and default recovery. Using UCC filings and real-estate lien records, we show that lenders adjust collateral structure in response to this gap. In states where homestead exemptions make owner home equity less reachable, lenders increase asset-specific documentation of movable collateral and are more likely to obtain voluntary liens on home equity. Where home equity remains more reachable, lenders instead tilt toward borrowers whose collateral portfolios include more readily pledgeable real estate, such as commercial property. The results show that debtor protections shape how lenders target and document collateral under standardized valuation rules.",
   "presentations": [
     "Baruch College Brown Bag Seminar 2026"
