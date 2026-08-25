@@ -8,10 +8,10 @@ export default {
         // active nav, the CV button, badges, and 1px hairlines; ink/cream/rule
         // remain the neutral base.
         ink: {
-          DEFAULT: '#34302d', // body text
-          soft: '#6e6862',    // secondary text
-          accent: '#5c524a',  // legacy taupe (kept for non-accent borders)
-          hover: '#7a6e64',   // legacy hover
+          DEFAULT: '#2b3441', // body text (V2 slate)
+          soft: '#66707d',    // secondary text
+          accent: '#4c596a',  // legacy taupe slot (non-accent borders)
+          hover: '#7c8899',   // legacy hover
         },
         burgundy: {
           // MOCKUP: Baruch navy (#05336B) trial — token names kept for the
@@ -22,11 +22,11 @@ export default {
           line: '#b9c8dd',    // soft navy border (badges, card hover)
         },
         cream: {
-          DEFAULT: '#f7f3e9', // page background
-          alt: '#ede8da',     // chip / panel background
-          card: '#fffdf8',    // card surface (a hair lighter than the page)
+          DEFAULT: '#f5f7fa', // page background (V2 oxford)
+          alt: '#e9edf2',     // chip / panel background
+          card: '#ffffff',    // card surface
         },
-        rule: '#ddd8d2',      // borders, dividers
+        rule: '#d9dfe7',      // borders, dividers
       },
       fontFamily: {
         serif: ['"Palatino Linotype"', 'Palatino', '"Book Antiqua"', 'Georgia', 'serif'],

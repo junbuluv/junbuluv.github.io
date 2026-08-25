@@ -60,11 +60,11 @@ const nav = [
     <slot name="head" />
   </head>
   <body>
-    <header class="sticky top-0 z-50 border-b border-burgundy-line bg-cream/80 backdrop-blur-md">
+    <header class="sticky top-0 z-50 bg-burgundy">
       <nav
         class="mx-auto flex max-w-content flex-col items-center gap-2 px-6 py-3 sm:flex-row sm:justify-between sm:gap-0 sm:py-4"
       >
-        <div class="shrink-0 whitespace-nowrap text-[1.15rem] font-bold text-ink">
+        <div class="shrink-0 whitespace-nowrap text-[1.15rem] font-bold text-white">
           <a href="index.html" class="text-inherit no-underline hover:no-underline">Jun Yoo</a>
         </div>
         <ul class="flex list-none gap-4 sm:gap-6">
@@ -76,8 +76,8 @@ const nav = [
                   class:list={[
                     'text-[0.92rem] tracking-[0.02em] hover:no-underline',
                     item.key === active
-                      ? 'border-b border-burgundy pb-0.5 font-semibold text-burgundy'
-                      : 'text-ink-soft hover:text-burgundy',
+                      ? 'border-b border-white pb-0.5 font-semibold text-white'
+                      : 'text-[#c8d4e6] hover:text-white',
                   ]}
                 >
                   {item.label}
