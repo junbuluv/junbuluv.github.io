@@ -9,10 +9,11 @@ Live: https://junbuluv.github.io
   `/research.html`, `/teaching.html`, etc. — preserves existing canonicals
   and the hand-maintained sitemap.
 - **Tailwind 3** via `@astrojs/tailwind` (no base styles; our own reset in
-  `src/styles/global.css`). Burgundy/cream serif palette is the project's
-  identity — defined in `tailwind.config.mjs` under `colors` (the `burgundy`
-  token group drives links, active nav, the CV button, badges, and 1px
-  hairlines; `cream.card` is the card surface) and `fontFamily.serif`. The
+  `src/styles/global.css`). Navy/oxford serif palette is the project's
+  identity — Baruch navy `#05336B` over a cool near-white base, defined in
+  `tailwind.config.mjs` under `colors` (the `navy` token group drives links,
+  active nav, the solid header band, the CV button, badges, and 1px
+  hairlines; `paper.card` is the card surface) and `fontFamily.serif`. The
   reusable `.card` component class (soft surface + hover lift) lives in
   `src/styles/global.css` and is used by the What's-new feed and research
   papers.
@@ -94,17 +95,20 @@ Path aliases (`tsconfig.json`): `@components/*`, `@layouts/*`, `@content/*`,
   rename a page (or change a PDF URL), update it manually — there is no
   sitemap integration. Keep `<lastmod>` current for changed entries.
 - SEO keywords: each page sets its own `keywords` prop on `BaseLayout`.
-- Styling new UI → follow the burgundy/cream system: use the `burgundy`
-  tokens (`text-burgundy`, `border-burgundy`, `bg-burgundy-tint`,
-  `border-burgundy-line`) for accents, the `.card` class
-  (`src/styles/global.css`) for list/panel surfaces, and
-  `inline-block border-b border-burgundy pb-1` for section `<h2>` underlines.
-  The header hairline uses the softer `border-burgundy-line`.
+- Styling new UI → follow the navy/oxford system: use the `navy` tokens
+  (`text-navy`, `border-navy`, `bg-navy-tint`, `border-navy-line`) for
+  accents, the `.card` class (`src/styles/global.css`) for list/panel
+  surfaces, and `inline-block border-b border-navy pb-1` for section `<h2>`
+  underlines. The site header is a **solid navy band** (`bg-navy` in
+  `BaseLayout.astro`) with white nav text; its inactive links use the
+  literal `text-[#c8d4e6]`.
   The **neutral base** (non-accent) tokens, also in `tailwind.config.mjs`:
-  `text-ink` (body) / `text-ink-soft` (secondary text), `border-rule`
-  (default borders & dividers), `bg-cream` (page) / `bg-cream-alt` (chips,
-  panels) / `bg-cream-card` (the `.card` surface). Reach for burgundy only
-  for accents; everything else uses ink/rule/cream.
+  `text-ink` (body, slate) / `text-ink-soft` (secondary text), `border-rule`
+  (default borders & dividers), `bg-paper` (page) / `bg-paper-alt` (chips,
+  panels) / `bg-paper-card` (the `.card` surface). Reach for navy only
+  for accents; everything else uses ink/rule/paper. The CV PDF's link color
+  (`\definecolor{navy}` in `cv.tex`) and `public/favicon.svg` match the
+  same navy — keep all three in sync if the accent ever changes.
 
 ## Gotchas
 
@@ -115,6 +119,13 @@ Path aliases (`tsconfig.json`): `@components/*`, `@layouts/*`, `@content/*`,
   `research.astro` (abstract toggle) for the pattern.
 - **Sitemap drift**: `public/sitemap.xml` is hand-maintained. Update
   `<lastmod>` and add new URLs by hand when you ship a new page or PDF.
+- **Headshot is dual-purpose**: `public/headshot.jpg` is both the homepage
+  portrait (rendered in an `aspect-[4/5]` container with `object-cover` in
+  `index.astro`) **and** the site's `og:image` / JSON-LD `image` (set in
+  `index.astro` and `BaseLayout.astro`). Keep it a ~800×1000 **4:5 portrait**
+  — a square or low-res source crops awkwardly and looks pixelated when the
+  4:5 box upscales it. Re-export from a high-res original (e.g. `sips` on
+  macOS) rather than upscaling the existing file.
 
 ## Companion docs
 
