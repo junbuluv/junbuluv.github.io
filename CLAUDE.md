@@ -47,7 +47,8 @@ Path aliases (`tsconfig.json`): `@components/*`, `@layouts/*`, `@content/*`,
   `/Volumes/harmless_ssd/job_market/materials/master/documents/cv.tex`
   (outside this repo). When the master changes, port its **contents** into
   `cv.tex` but keep this file's **format**: margin-label template, A4, 2
-  pages, no abstracts. Where the master only compresses detail that keeps the
+  pages, and an abstract for the job market paper only (other papers stay
+  title-only). Where the master only compresses detail that keeps the
   record accurate (exact semesters, a "poster" qualifier), keep the precise
   version. The public CV includes the master's citizenship line (decided
   2026-09-30).

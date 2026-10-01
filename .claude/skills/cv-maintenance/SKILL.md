@@ -68,7 +68,9 @@ spelled-out ones (or vice versa). Safe-to-abbreviate tier: EFA, FIRS, FMA
 ## cv.tex section structure
 
 **Contents come from the job-market master CV** (path in `CLAUDE.md`);
-`cv.tex` keeps its own margin-label format, A4, 2 pages, no abstracts.
+`cv.tex` keeps its own margin-label format, A4, 2 pages. Only the Job
+Market Paper carries an abstract (`{\small …\par}` under its "Presented
+at" line); other papers stay title-only.
 Port what the master lists and how it names things; keep this file's more
 precise detail only where the master compresses it at the cost of accuracy
 (exact semesters, a "poster" qualifier).
