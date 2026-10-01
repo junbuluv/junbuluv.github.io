@@ -43,3 +43,5 @@ baruchfinance.com, CV fourth reference, CV JMP abstract).
   including the meta-description clause and keywords (23cb9cf).
 - build:cv:jm and the letter/A4 copies removed; cv.tex is plain A4 again
   (d6b3df5). Stray home-desktop.png deleted. Sitemap lastmod (a9ec54e).
+- Intro tightened from 53 to 23 words: research question plus one topic per
+  paper (lender specialization, credit guarantees, debtor protection).
