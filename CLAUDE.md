@@ -52,6 +52,12 @@ Path aliases (`tsconfig.json`): `@components/*`, `@layouts/*`, `@content/*`,
   record accurate (exact semesters, a "poster" qualifier), keep the precise
   version. The public CV includes the master's citizenship line (decided
   2026-09-30).
+- **Local CV with abstracts**: `npm run build:cv:abstracts` defines
+  `\CVAbstracts` and builds `cv_abstracts.pdf` (gitignored, never
+  published): the same CV plus the credit-guarantees abstract. That abstract
+  lives in three places (the `\CVAbstracts` block in `cv.tex`,
+  `src/content/papers/credit-guarantees.json`, and the master CV), so edit
+  them together.
 
 ## Build / deploy
 
@@ -59,7 +65,8 @@ Path aliases (`tsconfig.json`): `@components/*`, `@layouts/*`, `@content/*`,
 - **Typecheck**: `npm run typecheck` (wraps `astro check`).
 - **Build**: `npm run build` → static output in `dist/`.
 - **Format**: `npm run format` (prettier over `src/**/*.{ts,astro,json,css,md}`).
-- **CV**: `npm run build:cv` (pdflatex × 2 + copy to `public/`).
+- **CV**: `npm run build:cv` (pdflatex × 2 + copy to `public/`);
+  `npm run build:cv:abstracts` for the local copy with the extra abstract.
 - **Deploy**: `npm run deploy` runs the Astro build then `npx gh-pages -d dist
   -b gh-pages --dotfiles` to publish the built output to the `gh-pages`
   branch. GitHub Pages serves from `gh-pages`. The `main` branch holds

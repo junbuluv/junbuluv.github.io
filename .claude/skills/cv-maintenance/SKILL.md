@@ -68,9 +68,13 @@ spelled-out ones (or vice versa). Safe-to-abbreviate tier: EFA, FIRS, FMA
 ## cv.tex section structure
 
 **Contents come from the job-market master CV** (path in `CLAUDE.md`);
-`cv.tex` keeps its own margin-label format, A4, 2 pages. Only the Job
-Market Paper carries an abstract (`{\small …\par}` under its "Presented
-at" line); other papers stay title-only.
+`cv.tex` keeps its own margin-label format, A4, 2 pages. In the public
+build only the Job Market Paper carries an abstract (`{\small …\par}` under
+its "Presented at" line); other papers stay title-only. The local
+`npm run build:cv:abstracts` copy (`cv_abstracts.pdf`, gitignored) also
+prints the credit-guarantees abstract inside an `\ifdefined\CVAbstracts`
+block. After editing `cv.tex`, page-count **both** builds. That abstract is
+mirrored in the paper's JSON and the master CV, so keep all three in step.
 Port what the master lists and how it names things; keep this file's more
 precise detail only where the master compresses it at the cost of accuracy
 (exact semesters, a "poster" qualifier).

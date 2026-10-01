@@ -6,6 +6,9 @@ cv.fls
 cv.fdb_latexmk
 cv.synctex.gz
 
+# Local CV with extra abstracts (build:cv:abstracts; never published)
+cv_abstracts.*
+
 # Local preview / debug screenshots
 preview*.png
 live-*.png

@@ -34,6 +34,9 @@
 % Contents mirror the job-market master CV (kept outside this repo); this
 % file keeps its own margin-label format, A4 paper, and 2-page length.
 % `npm run build:cv` builds it (→ public/cv.pdf).
+% `npm run build:cv:abstracts` defines \CVAbstracts to build a local copy
+% (cv_abstracts.pdf, gitignored, never published) that also prints the
+% credit-guarantees abstract.
 % -------------------------------------------------------------------------
 
 \usepackage[paper=a4paper,
@@ -178,6 +181,22 @@ New York, NY & \texttt{Website:} \href{https://junbuluv.github.io}{junbuluv.gith
 \begin{outerlist}
     \item Do Credit Guarantees Create Value? \\
     \textit{with Elizabeth Bickmore}
+    \ifdefined\CVAbstracts
+    \par\vspace{1mm}
+    {\small Government credit guarantees are intended to improve access to
+    credit, but the benefits may not be fully passed through to borrowers. We
+    exploit a 2013 Small Business Administration (SBA) policy that eliminated
+    guarantee fees for loans up to \$150,000 and use repayment histories and
+    secondary-market prices to estimate risk-adjusted profit (RAP). Following
+    the policy, SBA RAP falls for fee-waived loans, while lender RAP increases
+    by 1.03 cents per loan dollar for high-guarantee loans. Lender RAP shows no
+    comparable increase for loans with a constant 50\% guarantee and the same
+    fee relief. We find no corresponding relative improvement in interest
+    spreads, loan size, or aggregate approved lending. Thus, increased
+    government support can raise intermediary financial value without
+    improving observed credit outcomes, and the effect depends on the
+    guarantee structure.\par}
+    \fi
     \item Debtor Protection and Home-Equity Pledging in Small-Business Lending \\
     \textit{with Linda Allen and Fabrice Tourre}
 \end{outerlist}
