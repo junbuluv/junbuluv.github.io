@@ -30,12 +30,16 @@ A4); desktop 1280×900 + mobile 390×844 screenshots; abstract toggle works;
 live sentinels confirmed (home notice, research WIP heading, teaching
 baruchfinance.com, CV fourth reference, CV JMP abstract).
 
-## Open items
-- Two master-vs-site detail differences (teaching semesters, a presentation
-  qualifier) were raised with Jun in-session; the website keeps the site
-  data's version.
-- cv_us/cv_eu are now identical-content letter/A4 copies; build:cv:jm can
-  go if unused.
-- Bio still mentions "discretion" (old paper title); left as Jun's wording.
-- Remove the homepage job-market notice (`jobMarketSeason` in index.astro)
-  after the market.
+## Remaining items, resolved 2026-10-01 (interview)
+- Queens Intro Macro: Jun taught 2023–24 too, so the master was right. The
+  teaching page adds Fall 2023 and Spring 2024, and the CV shows Fall
+  2022–Spring 2025 (5cd8455).
+- UDel–Philadelphia Fed: "(poster)" added to the master CV in the
+  job_market repo (b694107); master only, existing school packets untouched
+  per that repo's rules. Three unsubmitted packets still have the old line.
+- Bio: Jun's wording covering the JMP, credit guarantees, and debtor
+  protection (b560f0c).
+- Job-market notice now hides itself on the first build after 2027-06-30,
+  including the meta-description clause and keywords (23cb9cf).
+- build:cv:jm and the letter/A4 copies removed; cv.tex is plain A4 again
+  (d6b3df5). Stray home-desktop.png deleted. Sitemap lastmod (a9ec54e).
