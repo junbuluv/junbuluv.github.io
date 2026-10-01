@@ -7,6 +7,11 @@ const presentations = await getCollection('presentations');
 const awards = await getCollection('awards');
 const cv = await getEntry('materials', 'cv');
 
+// Job-market notice in the hero; also fed into the meta description. Remove
+// both (and the panel markup) once the market wraps up.
+const jobMarketSeason = '2026–2027';
+const jmp = (await getCollection('papers')).find((p) => p.data.section === 'Job Market Paper');
+
 type FeedItem = {
   type: 'Presentation' | 'Award';
   text: string;
@@ -62,10 +67,9 @@ function formatUpdated(iso: string): string {
 
 const cvUpdatedLabel = cv ? formatUpdated(cv.data.updated) : '';
 
-const description =
-  'Jun Yoo is a Doctoral Candidate in Economics at The Graduate Center, CUNY. Research on information frictions, lender specialization, and small business lending.';
+const description = `Jun Yoo is a Doctoral Candidate in Economics at The Graduate Center, CUNY, on the ${jobMarketSeason} job market. Research on financial intermediation, empirical corporate finance, and small-business lending.`;
 const keywords =
-  'Jun Yoo, Hyun Jun Yoo, Jun Yoo CUNY, Jun Yoo economist, economics, finance, CUNY, Baruch College, Graduate Center CUNY, small business lending, lender specialization, banking, information frictions, soft information, private credit, doctoral candidate';
+  'Jun Yoo, Hyun Jun Yoo, Jun Yoo CUNY, Jun Yoo economist, Jun Yoo job market, job market candidate, economics, finance, CUNY, Baruch College, Graduate Center CUNY, financial intermediation, empirical corporate finance, small business lending, lender specialization, credit guarantees, banking, information frictions, doctoral candidate';
 ---
 
 <BaseLayout
@@ -95,12 +99,13 @@ const keywords =
         email: ['hyunjun.yoo@baruch.cuny.edu', 'hyoo1@gc.cuny.edu'],
         sameAs: profiles.map((p) => p.url),
         knowsAbout: [
+          'Financial Intermediation',
+          'Empirical Corporate Finance',
+          'Small-Business Lending',
           'Banking',
-          'Small Business Lending',
-          'Private Credit',
-          'Information Frictions',
           'Lender Specialization',
-          'Soft Information',
+          'Credit Guarantees',
+          'Information Frictions',
         ],
       },
     ],
@@ -119,6 +124,26 @@ const keywords =
         <p class="mb-4 text-[0.95rem] text-ink-soft">
           The Graduate Center, CUNY &amp; Baruch College, Zicklin School of Business
         </p>
+        <div class="mb-4 rounded-r border-l-[3px] border-navy bg-navy-tint px-4 py-3 text-[0.95rem] leading-snug">
+          <p class="font-semibold text-navy">I am on the {jobMarketSeason} job market.</p>
+          {
+            jmp && (
+              <p class="mt-1.5">
+                <span class="text-ink-soft">Job Market Paper:</span> <em>{jmp.data.title}</em>
+                {jmp.data.url && (
+                  <a
+                    href={jmp.data.url}
+                    target="_blank"
+                    rel="noopener"
+                    class="whitespace-nowrap text-[0.88rem]"
+                  >
+                    [{jmp.data.urlLabel}]
+                  </a>
+                )}
+              </p>
+            )
+          }
+        </div>
         <p class="mb-3 text-[0.98rem]">
           Hi! My name is Jun Yoo, and I am a Doctoral candidate at The Graduate Center, CUNY and
           Baruch College. I study how information frictions and regulatory design shape small
@@ -126,18 +151,19 @@ const keywords =
           of soft information.
         </p>
         <p class="mb-4 text-[0.95rem] text-ink-soft">
-          <strong class="text-ink">Fields:</strong> Banking, Small Business Lending, Private Credit
+          <strong class="text-ink">Fields:</strong> Financial Intermediation, Empirical Corporate Finance,
+          Small-Business Lending
         </p>
         {
           cv && (
-            <p class="mt-5">
+            <p class="mt-5 flex flex-wrap items-center gap-x-3 gap-y-2">
               <a
                 href={cv.data.file}
                 class="inline-block rounded border border-navy px-5 py-2 text-[0.93rem] transition-colors hover:bg-navy hover:text-white hover:no-underline"
               >
                 Download CV (PDF)
               </a>
-              <span class="ml-3 text-[0.8rem] text-ink-soft">
+              <span class="whitespace-nowrap text-[0.8rem] text-ink-soft">
                 Latest version: {cvUpdatedLabel}
               </span>
             </p>
