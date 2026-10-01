@@ -105,9 +105,11 @@ Path aliases (`tsconfig.json`): `@components/*`, `@layouts/*`, `@content/*`,
   this embedded `presentations` field, **not** the `presentations`
   collection — duplicate the venue string in both places when relevant.
 - **Job-market notice**: the homepage hero panel ("I am on the 2026–2027 job
-  market." + JMP link) and the meta description both read `jobMarketSeason`
-  in `index.astro`. It's manual — remove the panel and the description
-  clause once the market wraps up.
+  market." + JMP link), the meta-description clause, and the job-market
+  keywords read `jobMarketSeason` in `index.astro` and hide themselves on
+  the first build after `jobMarketUntil` (2027-06-30). It's build-time like
+  the What's-new year, so it takes a deploy after that date. For a later
+  market, update both constants.
 - URLs: keep `.html` extensions in canonicals, og:url, and `sitemap.xml`
   consistent with `build.format: 'file'`.
 - **Sitemap is hand-maintained** at `public/sitemap.xml`. When you add or

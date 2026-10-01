@@ -7,9 +7,12 @@ const presentations = await getCollection('presentations');
 const awards = await getCollection('awards');
 const cv = await getEntry('materials', 'cv');
 
-// Job-market notice in the hero; also fed into the meta description. Remove
-// both (and the panel markup) once the market wraps up.
+// Job-market notice in the hero; also fed into the meta description. Like the
+// What's-new year, this is resolved at build time: the first deploy after
+// `jobMarketUntil` drops both without a code change.
 const jobMarketSeason = '2026–2027';
+const jobMarketUntil = '2027-06-30';
+const showJobMarket = new Date().toISOString().slice(0, 10) <= jobMarketUntil;
 const jmp = (await getCollection('papers')).find((p) => p.data.section === 'Job Market Paper');
 
 type FeedItem = {
@@ -67,9 +70,10 @@ function formatUpdated(iso: string): string {
 
 const cvUpdatedLabel = cv ? formatUpdated(cv.data.updated) : '';
 
-const description = `Jun Yoo is a Doctoral Candidate in Economics at The Graduate Center, CUNY, on the ${jobMarketSeason} job market. Research on financial intermediation, empirical corporate finance, and small-business lending.`;
-const keywords =
-  'Jun Yoo, Hyun Jun Yoo, Jun Yoo CUNY, Jun Yoo economist, Jun Yoo job market, job market candidate, economics, finance, CUNY, Baruch College, Graduate Center CUNY, financial intermediation, empirical corporate finance, small business lending, lender specialization, credit guarantees, banking, information frictions, doctoral candidate';
+const jobMarketClause = showJobMarket ? `, on the ${jobMarketSeason} job market` : '';
+const description = `Jun Yoo is a Doctoral Candidate in Economics at The Graduate Center, CUNY${jobMarketClause}. Research on financial intermediation, empirical corporate finance, and small-business lending.`;
+const jobMarketKeywords = showJobMarket ? 'Jun Yoo job market, job market candidate, ' : '';
+const keywords = `Jun Yoo, Hyun Jun Yoo, Jun Yoo CUNY, Jun Yoo economist, ${jobMarketKeywords}economics, finance, CUNY, Baruch College, Graduate Center CUNY, financial intermediation, empirical corporate finance, small business lending, lender specialization, credit guarantees, banking, information frictions, doctoral candidate`;
 ---
 
 <BaseLayout
@@ -124,26 +128,28 @@ const keywords =
         <p class="mb-4 text-[0.95rem] text-ink-soft">
           The Graduate Center, CUNY &amp; Baruch College, Zicklin School of Business
         </p>
-        <div class="mb-4 rounded-r border-l-[3px] border-navy bg-navy-tint px-4 py-3 text-[0.95rem] leading-snug">
-          <p class="font-semibold text-navy">I am on the {jobMarketSeason} job market.</p>
-          {
-            jmp && (
-              <p class="mt-1.5">
-                <span class="text-ink-soft">Job Market Paper:</span> <em>{jmp.data.title}</em>
-                {jmp.data.url && (
-                  <a
-                    href={jmp.data.url}
-                    target="_blank"
-                    rel="noopener"
-                    class="whitespace-nowrap text-[0.88rem]"
-                  >
-                    [{jmp.data.urlLabel}]
-                  </a>
-                )}
-              </p>
-            )
-          }
-        </div>
+        {
+          showJobMarket && (
+            <div class="mb-4 rounded-r border-l-[3px] border-navy bg-navy-tint px-4 py-3 text-[0.95rem] leading-snug">
+              <p class="font-semibold text-navy">I am on the {jobMarketSeason} job market.</p>
+              {jmp && (
+                <p class="mt-1.5">
+                  <span class="text-ink-soft">Job Market Paper:</span> <em>{jmp.data.title}</em>
+                  {jmp.data.url && (
+                    <a
+                      href={jmp.data.url}
+                      target="_blank"
+                      rel="noopener"
+                      class="whitespace-nowrap text-[0.88rem]"
+                    >
+                      [{jmp.data.urlLabel}]
+                    </a>
+                  )}
+                </p>
+              )}
+            </div>
+          )
+        }
         <p class="mb-3 text-[0.98rem]">
           Hi! My name is Jun Yoo, and I am a Doctoral candidate at The Graduate Center, CUNY and
           Baruch College. I study how information frictions and regulatory design shape small
