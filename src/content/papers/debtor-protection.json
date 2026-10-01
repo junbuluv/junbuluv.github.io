@@ -1,11 +1,12 @@
 {
-  "title": "When the Home Is Out of Reach: Collateral Choice and the Reconstruction of Recovery",
-  "order": 2,
+  "title": "Debtor Protection and Home-Equity Pledging in Small-Business Lending",
+  "order": 3,
+  "section": "Working Papers",
   "coauthors": [
     "Linda Allen",
     "Fabrice Tourre"
   ],
-  "abstract": "We study how lenders reallocate recovery effort across collateral margins when regulation replaces discretion with standardized rules. A 2014 SBA reform increased the recognized value of business collateral relative to expected liquidation recovery, creating a gap between regulatory compliance and default recovery. Using UCC filings and real-estate lien records, we show that lenders adjust collateral structure in response to this gap. In states where homestead exemptions make owner home equity less reachable, lenders increase asset-specific documentation of movable collateral and are more likely to obtain voluntary liens on home equity. Where home equity remains more reachable, lenders instead tilt toward borrowers whose collateral portfolios include more readily pledgeable real estate, such as commercial property. The results show that debtor protections shape how lenders target and document collateral under standardized valuation rules.",
+  "abstract": "Homestead protection shields an owner's home from creditors, preserving household wealth but also limiting a lender's recovery. We link SBA loans originated in 2011–2019 to mortgage and deed-of-trust records across 49 jurisdictions, and to business collateral and filing records in California, Colorado, and Florida. A 1 percent higher exemption amount is associated with 0.016 percentage points more home-equity pledging. Using an exogenous shift that admits marginal borrowers into the market, we find that lenders take home equity upfront where debtor protection is stronger.",
   "presentations": [
     "Baruch College Brown Bag Seminar 2026"
   ]

@@ -1,13 +1,13 @@
 {
   "title": "Public Information, Private Expertise, and Lender Specialization",
   "order": 1,
+  "section": "Job Market Paper",
   "url": "https://papers.ssrn.com/sol3/papers.cfm?abstract_id=5445275",
   "urlLabel": "PDF",
-  "status": "Under Review",
-  "abstract": "Why do lenders specialize in specific industries rather than diversify? Exploiting the SBA's 2014 credit-scoring mandate, which applied to most guaranteed loans but left one program exempt, I show that standardized scores reduced specialization by 12.7 percent as lenders entered new sectors and reallocated portfolios. Yet public information crowds out private expertise: in previously specialized industries, post-reform defaults rise by 11 percent of the pre-policy rate while competitive entry holds spreads flat. A Bartik shift-share IV confirms that remaining specialization causally lowers defaults, deepens repeat borrowing, and reduces spreads for repeat borrowers, reflecting informational complementarities rather than hold-up.",
+  "abstract": "This paper studies how public information reshapes lender specialization. Using a 2014 Small Business Administration reform that introduced a shared screening technology, I find that treated portfolios originated under the shared system move toward the market industry benchmark. Lenders' portfolios also become more similar to the other lender group's allocation, indicating reduced specialization within lenders and less sorting across lenders. The public-information effect, such as improvements in default rates, is smaller where lenders were more specialized before the reform, suggesting compressed returns to private expertise. Shift-share IV estimates show that post-reform specialization remains valuable in relationship lending and is associated with lower defaults in capital-intensive industries, where private expertise persists.",
   "presentations": [
     "EFA 2026 (Doctoral Tutorial)",
-    "FIRS 2026 (Ph.D. Student Sessions)",
+    "FIRS 2026 (Ph.D. Student Session)",
     "FMA 2025",
     "LaBS International Banking Workshop 2025",
     "UDel–Philadelphia Fed Fintech Conference 2025 (poster)",

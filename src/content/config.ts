@@ -1,16 +1,21 @@
 import { defineCollection, z } from 'astro:content';
 
-// Working papers. Order in research.html follows `order` ascending.
+// Papers. research.html groups them by `section` (mirroring the CV), each
+// group ordered by `order` ascending. The homepage job-market notice links
+// the 'Job Market Paper' entry.
 const papers = defineCollection({
   type: 'data',
   schema: z.object({
     title: z.string(),
     order: z.number(),
+    section: z
+      .enum(['Job Market Paper', 'Working Papers', 'Work in Progress'])
+      .default('Working Papers'),
     coauthors: z.array(z.string()).optional(),
     url: z.string().url().optional(),
     urlLabel: z.string().optional().default('PDF'),
-    status: z.string().optional(), // e.g. "Under Review", "Work in Progress"
-    abstract: z.string(),
+    status: z.string().optional(), // e.g. "Revise & Resubmit"
+    abstract: z.string().optional(), // work in progress may not have one yet
     presentations: z.array(z.string()).optional(),
   }),
 });
