@@ -30,21 +30,17 @@
 
 \usepackage{comment}
 
-% ---- Contents & paper-size variants -------------------------------------
+% ---- Contents ------------------------------------------------------------
 % Contents mirror the job-market master CV (kept outside this repo); this
-% file keeps its own margin-label format and 2-page length.
-% `pdflatex cv.tex` alone builds the website CV on A4 (→ public/cv.pdf).
-% `npm run build:cv:jm` builds repo-local copies (gitignored):
-%   cv_us.pdf  — US letter paper
-%   cv_eu.pdf  — A4 paper
-% Content is identical across all three builds.
+% file keeps its own margin-label format, A4 paper, and 2-page length.
+% `npm run build:cv` builds it (→ public/cv.pdf).
 % -------------------------------------------------------------------------
 
-\usepackage[marginparwidth=24mm,
+\usepackage[paper=a4paper,
+            marginparwidth=24mm,
             marginparsep=1mm,
             margin=15mm,
             includemp]{geometry}
-\ifdefined\CVUS \geometry{paper=letterpaper}\else \geometry{paper=a4paper}\fi
 
 \setlength{\parindent}{0in}
 

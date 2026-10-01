@@ -6,10 +6,6 @@ cv.fls
 cv.fdb_latexmk
 cv.synctex.gz
 
-# Letter/A4 CV copies (build outputs of build:cv:jm; not published)
-cv_us.*
-cv_eu.*
-
 # Local preview / debug screenshots
 preview*.png
 live-*.png

@@ -95,12 +95,6 @@ Escape `&` as `\&` everywhere in LaTeX.
 
 `npm run build:cv` runs `pdflatex` twice and copies `cv.pdf` into `public/`.
 
-**Paper-size copies**: `npm run build:cv:jm` builds `cv_us.pdf` (letter)
-and `cv_eu.pdf` (A4) from the same `cv.tex` via `\CVUS`/`\CVEU`; content is
-identical to the website CV. They're gitignored and never committed. After
-editing `cv.tex`, rebuild and page-count **all three**. Letter paper is
-shorter than A4, so `cv_us.pdf` is the first to spill onto a third page.
-
 After any `cv.tex` edit, **always**:
 
 1. `npm run build:cv` and confirm `Output written on cv.pdf (… pages …)`.
