@@ -46,7 +46,7 @@ Before `npm run deploy`:
 2. `npm run build` — must compile cleanly; check `dist/` has the four
    `.html` pages plus `cv.pdf`.
 3. Open `npm run preview` and load each page in a browser. Confirm:
-   - Burgundy/cream palette intact, serif fonts loaded.
+   - Navy/paper palette intact, serif fonts loaded.
    - "What's new" feed reflects the latest entry you added.
    - `/cv.pdf` downloads the freshly compiled PDF.
 4. If you added or renamed a page, update `public/sitemap.xml` (it is

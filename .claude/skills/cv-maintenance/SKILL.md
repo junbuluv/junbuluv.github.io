@@ -29,7 +29,7 @@ A venue or talk can live in up to **three** places. Know which you're editing:
 
 | Surface | File(s) | Wording style |
 |---|---|---|
-| CV PDF | `cv.tex` (`Presentations`, `Working Papers`, `Honors and Awards`) | **Full** names in `Presentations`; web-style abbreviations in `Presented at:` lines |
+| CV PDF | `cv.tex` (`Presentations`, `Job Market Paper` / `Working Papers` / `Work in Progress`, `Fellowships and Grants`) | **Full** names in `Presentations`; web-style abbreviations in `Presented at:` lines |
 | Research page (`/research.html`) | `src/content/papers/<slug>.json` → `presentations[]` | **Abbreviated** |
 | Homepage "What's new" feed | `src/content/presentations/<slug>.json` → `venue` + `year` | **Abbreviated** |
 
@@ -44,7 +44,7 @@ talks whose `year` equals the current calendar year (resolved at build time).
 **Website** (research page + feed) — one shape: `Venue Year (qualifier)`
 - Abbreviate the org: `EFA`, `FIRS`, `FMA`. Year inline, no comma.
 - Session/role qualifiers go in **parentheses**, omitted when none:
-  `EFA 2026 (Doctoral Tutorial)`, `FIRS 2026 (Ph.D. Student Sessions)`,
+  `EFA 2026 (Doctoral Tutorial)`, `FIRS 2026 (Ph.D. Student Session)`,
   `FMA 2025`, `… Conference 2025 (poster)`.
 - In the feed collection the `year` is a separate field, so the `venue`
   string drops the year: `EFA (Doctoral Tutorial)`.
@@ -54,9 +54,9 @@ talks whose `year` equals the current calendar year (resolved at build time).
 - **Presentations section** (the formal record): **full** formal names —
   `European Finance Association Annual Meeting --- Doctoral Tutorial`
   (`---` is the LaTeX em-dash). Never abbreviate here.
-- **"Presented at:" lines under Working Papers** (compact cross-reference):
+- **"Presented at:" lines under a paper** (compact cross-reference):
   use the **website's abbreviations** for marquee associations only —
-  `EFA Doctoral Tutorial (2026); FIRS Ph.D. Student Sessions (2026);
+  `EFA Doctoral Tutorial (2026); FIRS Ph.D. Student Session (2026);
   FMA (2025)` — plus `UDel--Philadelphia Fed` (`--` = en-dash). Venues with
   no recognized initialism (LaBS workshop, Brown Bags) stay spelled out.
   Poster/role qualifiers go inside the year parenthetical: `(poster, 2025)`.
@@ -67,17 +67,25 @@ spelled-out ones (or vice versa). Safe-to-abbreviate tier: EFA, FIRS, FMA
 
 ## cv.tex section structure
 
-- **Working Papers** (`\begin{outerlist}`): each paper is an `\item` with the
-  title (often `\href{...}`) and a right-aligned status via `\hfill
-  \textit{Under Review}` / `\textit{Work in Progress}`. A per-paper venue
-  list can hang beneath the title as `\\ {\small\textit{Presented at: …}}`
-  using **semicolons** between venues (several venue names contain internal
+**Contents come from the job-market master CV** (path in `CLAUDE.md`);
+`cv.tex` keeps its own margin-label format, A4, 2 pages, no abstracts.
+Port what the master lists and how it names things; keep this file's more
+precise detail only where the master compresses it at the cost of accuracy
+(exact semesters, a "poster" qualifier).
+
+- **Job Market Paper / Working Papers / Work in Progress**
+  (`\begin{outerlist}` each, mirroring the research page's `section`
+  groups): each paper is an `\item` with the title (often `\href{...}`),
+  then `\\ \textit{with …}` for coauthors. An optional right-aligned status
+  goes after the title via `\hfill \textit{…}`. A per-paper venue list can
+  hang beneath as `\\ {\small\textit{Presented at: …}}` using
+  **semicolons** between venues (several venue names contain internal
   commas, e.g. "The Graduate Center, CUNY", so commas would be ambiguous),
   with years in parentheses.
 - **Presentations**: `\textbf{<year>}` headings, each wrapping an
   `\begin{innerlist}` of venues separated by `\vspace{1mm}`.
-- **Honors and Awards**: items are `\textit{...}` only — **no `\textbf`**.
-  Italic is the house style here; don't reintroduce bold.
+- **Fellowships and Grants**: items are `\textit{...}` only — **no
+  `\textbf`**. Italic is the house style here; don't reintroduce bold.
 
 Escape `&` as `\&` everywhere in LaTeX.
 
@@ -85,13 +93,11 @@ Escape `&` as `\&` everywhere in LaTeX.
 
 `npm run build:cv` runs `pdflatex` twice and copies `cv.pdf` into `public/`.
 
-**Job-market variants**: `npm run build:cv:jm` builds `cv_us.pdf` (letter,
-Job Market Paper section, Work Authorization) and `cv_eu.pdf` (A4,
-Citizenship, no US immigration status) from the same `cv.tex` via
-`\CVUS`/`\CVEU` toggles; paper bodies live in `\PaperSpecialization`/
-`\PaperCollateral` macros so branches can't drift. The variants are
-**gitignored and never published** — repo is public. After editing
-`cv.tex`, rebuild and page-count **all three** (each is tuned to 2 pages).
+**Paper-size copies**: `npm run build:cv:jm` builds `cv_us.pdf` (letter)
+and `cv_eu.pdf` (A4) from the same `cv.tex` via `\CVUS`/`\CVEU`; content is
+identical to the website CV. They're gitignored and never committed. After
+editing `cv.tex`, rebuild and page-count **all three**. Letter paper is
+shorter than A4, so `cv_us.pdf` is the first to spill onto a third page.
 
 After any `cv.tex` edit, **always**:
 

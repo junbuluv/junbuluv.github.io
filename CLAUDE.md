@@ -30,26 +30,30 @@ Path aliases (`tsconfig.json`): `@components/*`, `@layouts/*`, `@content/*`,
 - Pages: `src/pages/{index,research,teaching,contact}.astro`
 - Layout: `src/layouts/BaseLayout.astro` (nav + footer + SEO + JSON-LD slot + `<ClientRouter />`)
 - Content collections:
-  - `src/content/papers/<slug>.json` — working papers; `research.html` lists them by `order`.
+  - `src/content/papers/<slug>.json` — papers; `research.html` groups them by `section` (`Job Market Paper` | `Working Papers` | `Work in Progress`, mirroring the CV) and orders each group by `order`. The homepage job-market notice links the `Job Market Paper` entry.
   - `src/content/presentations/<slug>.json` — talks; the index "What's new" feed pulls current-year talks from here (Brown Bag venues are filtered out).
   - `src/content/awards/<slug>.json` — fellowships/honors; only awards with `"includeInFeed": true` (and a year spanning the current year) appear in What's new.
   - `src/content/teaching/<slug>.json` — courses; `teaching.html` groups by `institution`.
   - `src/content/materials/<slug>.json` — job-market documents (CV today; research/teaching statements later). The homepage's "Latest version" stamp reads `materials/cv.json` → `updated`.
 - Site-wide data module: `src/data/profiles.ts` — single source of truth for SSRN/LinkedIn/GitHub URLs (drives `rel="me"`, JSON-LD `sameAs`, and the contact page list).
-- Static assets (served at site root): `public/cv.pdf`, `public/discretion.pdf`,
+- Static assets (served at site root): `public/cv.pdf`,
   `public/headshot.jpg`, `public/favicon.svg`, `public/robots.txt`,
   `public/sitemap.xml`, `public/.nojekyll`, `public/google*.html`.
 - CV LaTeX source: `cv.tex` at repo root. `npm run build:cv` runs `pdflatex`
   twice and copies `cv.pdf` into `public/`. The regular `npm run build` also
   copies an already-built `cv.pdf` into `public/` so a fresh `npm run build`
   always ships the latest PDF.
-- **Job-market CV variants**: `npm run build:cv:jm` builds `cv_us.pdf`
-  (letter paper, "Job Market Paper" section, Work Authorization line) and
-  `cv_eu.pdf` (A4, Citizenship line, deliberately no US immigration status)
-  from the same `cv.tex` via `\CVUS`/`\CVEU` toggles. These are
-  **repo-local application materials — gitignored, never committed or
-  published** (the repo is public). The site serves only the general
-  `public/cv.pdf`.
+- **CV contents mirror the job-market master** at
+  `/Volumes/harmless_ssd/job_market/materials/master/documents/cv.tex`
+  (outside this repo). When the master changes, port its **contents** into
+  `cv.tex` but keep this file's **format**: margin-label template, A4, 2
+  pages, no abstracts. Where the master only compresses detail that keeps the
+  record accurate (exact semesters, a "poster" qualifier), keep the precise
+  version. The public CV includes the master's citizenship line (decided
+  2026-09-30).
+- **Paper-size copies**: `npm run build:cv:jm` builds `cv_us.pdf` (letter)
+  and `cv_eu.pdf` (A4) from the same `cv.tex` via `\CVUS`/`\CVEU`; content is
+  identical to `public/cv.pdf`. Gitignored, never committed.
 
 ## Build / deploy
 
@@ -58,7 +62,7 @@ Path aliases (`tsconfig.json`): `@components/*`, `@layouts/*`, `@content/*`,
 - **Build**: `npm run build` → static output in `dist/`.
 - **Format**: `npm run format` (prettier over `src/**/*.{ts,astro,json,css,md}`).
 - **CV**: `npm run build:cv` (pdflatex × 2 + copy to `public/`);
-  `npm run build:cv:jm` for the local US/EU job-market variants.
+  `npm run build:cv:jm` for local letter/A4 copies.
 - **Deploy**: `npm run deploy` runs the Astro build then `npx gh-pages -d dist
   -b gh-pages --dotfiles` to publish the built output to the `gh-pages`
   branch. GitHub Pages serves from `gh-pages`. The `main` branch holds
@@ -93,10 +97,16 @@ Path aliases (`tsconfig.json`): `@components/*`, `@layouts/*`, `@content/*`,
   Assistant`; it renders in a muted meta line beneath the title as
   `<role> · <semesters>`. Use `websiteUrl` for the `[course website]` link.
 - Adding a paper → JSON in `src/content/papers/<slug>.json` with required
-  `title`, `order`, `abstract`. Optional `coauthors`, `url`, `urlLabel`,
-  `status`, `presentations` (free-form strings). The research page reads
+  `title`, `order`, and a `section` (`Job Market Paper` | `Working Papers`
+  (default) | `Work in Progress`). Optional `abstract` (the toggle is hidden
+  when absent), `coauthors`, `url`, `urlLabel`, `status`, `presentations`
+  (free-form strings). The research page reads
   this embedded `presentations` field, **not** the `presentations`
   collection — duplicate the venue string in both places when relevant.
+- **Job-market notice**: the homepage hero panel ("I am on the 2026–2027 job
+  market." + JMP link) and the meta description both read `jobMarketSeason`
+  in `index.astro`. It's manual — remove the panel and the description
+  clause once the market wraps up.
 - URLs: keep `.html` extensions in canonicals, og:url, and `sitemap.xml`
   consistent with `build.format: 'file'`.
 - **Sitemap is hand-maintained** at `public/sitemap.xml`. When you add or
