@@ -45,3 +45,6 @@ baruchfinance.com, CV fourth reference, CV JMP abstract).
   (d6b3df5). Stray home-desktop.png deleted. Sitemap lastmod (a9ec54e).
 - Intro tightened from 53 to 23 words: research question plus one topic per
   paper (lender specialization, credit guarantees, debtor protection).
+- Credit-guarantees abstract (Bickmore): Jun's new text with minimal CV
+  edits, now on the research page, in the master CV (job_market b184559),
+  and in a local cv_abstracts.pdf via npm run build:cv:abstracts.
