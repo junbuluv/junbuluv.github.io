@@ -24,3 +24,22 @@ typecheck 0 errors; build clean; preview at 1280×900: the box is still
 ## Follow-up
 - Social previews (LinkedIn etc.) cache `og:image` by URL. Re-scrape with
   LinkedIn Post Inspector if an old preview shows up.
+
+# Part 2 — private credit as a research field
+
+## Decisions (interview)
+- Order: appended last ("…small-business lending, and private credit").
+- Master CV updated too (job_market 28e8c04, branch codex/postdoc_tracker,
+  master only; school packets untouched per that repo's rules).
+
+## Shipped (main bfcb6c3, ea1722e; site deployed to gh-pages)
+- bfcb6c3 The CV fields line plus four homepage spots: the visible Fields line,
+  the meta description, keywords, and JSON-LD `knowsAbout`.
+- ea1722e Sitemap lastmod for `/` and `/cv.pdf` set to 2026-10-03.
+
+## Verification
+Public CV and `cv_abstracts.pdf`: 2 pages each, and the fields line still fits
+on one line. Master CV (XeLaTeX in job_market tmp/): still 3 pages with the
+same page breaks. typecheck 0 errors; build clean. Live: the homepage sentinel
+"Small-Business Lending, Private Credit" appeared about 30 s after deploy, and
+the live cv.pdf is byte-identical to public/cv.pdf.
