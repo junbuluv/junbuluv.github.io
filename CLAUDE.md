@@ -35,8 +35,9 @@ Path aliases (`tsconfig.json`): `@components/*`, `@layouts/*`, `@content/*`,
   - `src/content/awards/<slug>.json` — fellowships/honors; only awards with `"includeInFeed": true` (and a year spanning the current year) appear in What's new.
   - `src/content/teaching/<slug>.json` — courses; `teaching.html` groups by `institution`.
   - `src/content/materials/<slug>.json` — job-market documents (CV today; research/teaching statements later). The homepage's "Latest version" stamp reads `materials/cv.json` → `updated`.
-- Site-wide data module: `src/data/profiles.ts` — single source of truth for SSRN/LinkedIn/GitHub URLs (drives `rel="me"`, JSON-LD `sameAs`, and the contact page list).
+- Site-wide data module: `src/data/profiles.ts` — single source of truth for LinkedIn/GitHub URLs (`profiles` drives `rel="me"`, JSON-LD `sameAs`, and the contact page list). `jmpLink` is the hosted JMP PDF, shown first on the contact page but deliberately kept out of `profiles` (a file, not an identity).
 - Static assets (served at site root): `public/cv.pdf`,
+  `public/jmp.pdf` (the job market paper, linked from the homepage notice, `research.html`, and the contact page; replace the file to ship a new version),
   `public/headshot.jpg`, `public/favicon.svg`, `public/robots.txt`,
   `public/sitemap.xml`, `public/.nojekyll`, `public/google*.html`.
 - CV LaTeX source: `cv.tex` at repo root. `npm run build:cv` runs `pdflatex`

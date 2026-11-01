@@ -1,6 +1,6 @@
 ---
 import BaseLayout from '@layouts/BaseLayout.astro';
-import { profiles } from '@/data/profiles';
+import { profiles, jmpLink } from '@/data/profiles';
 
 const description = 'Contact information for Jun Yoo, Doctoral Candidate in Economics at CUNY.';
 const keywords =
@@ -24,6 +24,12 @@ const keywords =
       </p>
       <p class="font-semibold text-ink">Profiles</p>
       <ul class="space-y-1">
+        <li>
+          <span class="inline-block w-24 text-ink-soft">{jmpLink.label}</span>
+          <a href={jmpLink.url} target="_blank" rel="noopener">
+            {jmpLink.display}
+          </a>
+        </li>
         {
           profiles.map((p) => (
             <li>

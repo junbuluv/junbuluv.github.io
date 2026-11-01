@@ -5,16 +5,11 @@
 export type Profile = {
   label: string;
   url: string;
-  /** Short display string for the contact page, e.g. "ssrn.com/author=...". */
+  /** Short display string for the contact page, e.g. "github.com/junbuluv". */
   display: string;
 };
 
 export const profiles: Profile[] = [
-  {
-    label: 'SSRN',
-    url: 'https://papers.ssrn.com/Sol3/Cf_Dev/AbsByAuth.cfm?per_id=6460686',
-    display: 'papers.ssrn.com/author=6460686',
-  },
   {
     label: 'LinkedIn',
     url: 'https://www.linkedin.com/in/jun-yoo-91ba14155',
@@ -26,3 +21,12 @@ export const profiles: Profile[] = [
     display: 'github.com/junbuluv',
   },
 ];
+
+// Hosted job market paper (public/jmp.pdf). Listed first on the contact page,
+// but kept out of `profiles`: it is a file, not an identity, so it must not
+// feed rel="me" or JSON-LD `sameAs`.
+export const jmpLink: Profile = {
+  label: 'JMP',
+  url: 'https://junbuluv.github.io/jmp.pdf',
+  display: 'junbuluv.github.io/jmp.pdf',
+};
